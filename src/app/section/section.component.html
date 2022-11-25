@@ -8,16 +8,15 @@
  
               <div class=" text-left"> 
                <br>
-            
-                        
                         </div>
                      </div>
             
                      <mat-list>
-                        <div mat-subheader>show All livrets</div>
-                        <mat-list-item *ngFor="let c of elivrets">
+                        <div mat-subheader>show All sections</div>
+                        <mat-list-item>
+                          <mat-icon matListItemIcon></mat-icon>
                           
-                          <button  mat-raised-button color="accent" routerLink="livrets/1/sections">{{c.title}}</button>
+                          <button  mat-raised-button color="accent" routerLink="/livrets/1"></button>
 
                         </mat-list-item>
                         <mat-divider></mat-divider>

@@ -9,31 +9,25 @@ import { LivretServiceService } from 'src/services/livret-service.service';
 export class AddLivretComponent implements OnInit {
  
 
-  elivrets=[
-    {
-      id: 1,
-      title: "livret 1"
+  elivret={
+    id:'',
+    title: '',
+  }
 
-    },
-    {
-      id: 2,
-      title: "livret 2"
+  
 
-    },
-    {
-      id: 3,
-      title: "livret 3"
-
-    }
-  ];
-
-  constructor(private livret:LivretServiceService){}
-
+  constructor(private Selivret:LivretServiceService){}
   ngOnInit(): void {
-    this.livret.livrets().subscribe((data:any)=>{
-      this.elivrets=data;
-      console.log(this.elivrets);
+    throw new Error('Method not implemented.');
+  }
+
+
+
+  formSubmit(){
+    this.Selivret.addLivret(this.elivret).subscribe((data)=>{
+      this.elivret.title='';
     })
+
   }
 
 

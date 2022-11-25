@@ -9,7 +9,16 @@ export class LivretServiceService {
 
   constructor(private http:HttpClient) { }
  
+  //show livrets
   public livrets(){
       return this.http.get(this.BaseUrl+"all");
+  }
+
+  //add livrets
+
+  public addLivret(elivret: any){
+
+    return this.http.post(this.BaseUrl+"add",elivret);
+
   }
 }

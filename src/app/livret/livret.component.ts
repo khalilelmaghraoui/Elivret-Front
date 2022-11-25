@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LivretServiceService } from 'src/services/livret-service.service';
 
 
 
@@ -7,13 +8,33 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './livret.component.html',
   styleUrls: ['./livret.component.css']
 })
-export class LivretComponent  implements OnInit{
+export class LivretComponent implements OnInit {
+  elivrets=[
+    {
+      id: 1,
+      title: "livret 1"
 
-  constructor(){}
+    },
+    {
+      id: 2,
+      title: "livret 2"
 
+    },
+    {
+      id: 3,
+      title: "livret 3"
+
+    }
+  ];
   ngOnInit(): void {
+    this.livret.livrets().subscribe((data:any)=>{
+      this.elivrets=data;
+      console.log(this.elivrets);
+    })
   }
   
-  
+  constructor(private livret:LivretServiceService){
+
+  }
 
 }

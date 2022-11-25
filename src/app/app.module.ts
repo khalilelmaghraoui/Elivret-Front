@@ -14,17 +14,26 @@ import {MatListModule} from '@angular/material/list'
 import {MatTableModule} from '@angular/material/table';
 
 import { HttpClientModule } from '@angular/common/http';
-import { MatIconButton } from '@angular/material/button';
+
+import {MatInputModule} from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SectionComponent } from './section/section.component';
+import { ViewLivretComponent } from './view-livret/view-livret.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LivretComponent,
-    AddLivretComponent
+    AddLivretComponent,
+    SectionComponent,
+    ViewLivretComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,MatButtonModule,MatMenuModule,MatCardModule,MatListModule,MatTableModule,HttpClientModule,MatButtonModule,MatButtonModule
+    AppRoutingModule,MatButtonModule,MatMenuModule,MatCardModule,MatListModule,
+    MatTableModule,HttpClientModule,MatButtonModule,MatInputModule,FormsModule,BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
