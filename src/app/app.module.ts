@@ -20,6 +20,13 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SectionComponent } from './section/section.component';
 import { ViewLivretComponent } from './view-livret/view-livret.component';
+import { AddSectionComponent } from './add-section/add-section.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import { NavbarComponent } from './navbar/navbar.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 
 @NgModule({
@@ -28,12 +35,15 @@ import { ViewLivretComponent } from './view-livret/view-livret.component';
     LivretComponent,
     AddLivretComponent,
     SectionComponent,
-    ViewLivretComponent
+    ViewLivretComponent,
+    AddSectionComponent,NavbarComponent, SidebarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,MatButtonModule,MatMenuModule,MatCardModule,MatListModule,
-    MatTableModule,HttpClientModule,MatButtonModule,MatInputModule,FormsModule,BrowserAnimationsModule
+    MatTableModule,HttpClientModule,MatButtonModule,MatInputModule,
+    FormsModule,BrowserAnimationsModule,
+    MatSnackBarModule,MatToolbarModule,MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

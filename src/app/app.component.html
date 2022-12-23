@@ -1,21 +1,20 @@
 
-        
-        <mat-card>
-          <mat-card-content>
-            <section>
-              <div class="example-label"></div>
-              <div class="example-button-row">
-                <button mat-raised-button routerLink="/addLivrets" color="primary">add livret</button>
-                <button mat-raised-button routerLink="/livrets" color="primary">Livrets</button>
-                <button mat-raised-button routerLink="/sections" color="primary">sections</button>
-              </div>
-            </section>
-          </mat-card-content>
-        </mat-card>
+<app-navbar></app-navbar>
 
-<br><br>
- 
- <router-outlet></router-outlet>
+
+<div class="bootstrap-wrapper">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3"><app-sidebar></app-sidebar></div>
+			<div class="col-md-9">
+				<router-outlet></router-outlet>
+			</div>
+		</div> 
+		
+		
+	</div>
+</div>
+
  
 
 

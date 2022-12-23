@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { LivretServiceService } from 'src/services/livret-service.service';
 
 
@@ -9,6 +10,11 @@ import { LivretServiceService } from 'src/services/livret-service.service';
   styleUrls: ['./livret.component.css']
 })
 export class LivretComponent implements OnInit {
+
+  i=1;
+
+  elivretId:any;
+
   elivrets=[
     {
       id: 1,
@@ -30,10 +36,13 @@ export class LivretComponent implements OnInit {
     this.livret.livrets().subscribe((data:any)=>{
       this.elivrets=data;
       console.log(this.elivrets);
+
     })
   }
   
-  constructor(private livret:LivretServiceService){
+  constructor(private livret:LivretServiceService,private route: ActivatedRoute){
+
+    
 
   }
 

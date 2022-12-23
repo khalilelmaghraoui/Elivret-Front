@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { SectionService } from 'src/services/section.service';
 
 @Component({
@@ -7,29 +8,37 @@ import { SectionService } from 'src/services/section.service';
   styleUrls: ['./view-livret.component.css']
 })
 export class ViewLivretComponent implements OnInit{
+
+  sid: any;
  
   sections=[{
     title:'test section 1',
     elivretid:{
-      id:''
-    },
-  },{
+      id:'1'
+    }
 
-    title:'test section 2',
+  },
+  {
+    title:'test section 1',
     elivretid:{
-      id:''
-    },
+      id:'2'
+    }
 
   }]
 
   ngOnInit(): void {
 
-    this.Ssection.section().subscribe((data:any)=>{
+    this.Ssection.section(this.sid).subscribe((data:any)=>{
       this.sections=data;
       console.log(this.sections);
     })
   }
-  constructor(private Ssection:SectionService){}
+  
+  constructor(private Ssection:SectionService,private route:ActivatedRoute){
+    this.sid= this.route.snapshot.paramMap.get('id');
+   console.log(this.sid);
+    
+  }
 
 
 
