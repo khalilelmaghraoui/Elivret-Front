@@ -27,7 +27,6 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
- import 'bootstrap-grid-only-css/dist/css/bootstrap.min.css';
 
 
 
