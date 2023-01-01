@@ -13,6 +13,7 @@ export class LivretComponent implements OnInit {
 
   i=1;
 
+  LId:any;
   elivretId:any;
 
   elivrets=[
@@ -32,18 +33,30 @@ export class LivretComponent implements OnInit {
 
     }
   ];
+  constructor(private livret:LivretServiceService,private route: ActivatedRoute){
+    // this.LId=this.route.snapshot.paramMap.get('id');
+
+    
+
+  }
   ngOnInit(): void {
+    this.LId= this.route.snapshot.params['id'];
     this.livret.livrets().subscribe((data:any)=>{
       this.elivrets=data;
       console.log(this.elivrets);
 
     })
   }
-  
-  constructor(private livret:LivretServiceService,private route: ActivatedRoute){
 
-    
+  deleteLivret(id:number){
 
+    this.livret.deleteLivret(id).subscribe({
+      next:(res)=>{
+        alert("livret deleted")
+      }
+    })
   }
+  
+  
 
 }

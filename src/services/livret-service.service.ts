@@ -21,4 +21,8 @@ export class LivretServiceService {
     return this.http.post(this.BaseUrl+"add",elivret);
 
   }
+
+  deleteLivret(livretId:number){
+    return this.http.delete(this.BaseUrl+"elivrets/"+livretId)
+  }
 }

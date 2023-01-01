@@ -28,9 +28,9 @@
                                   <td>{{c.title}}</td>
                                 
                                   <td>
-                                    <button type="button" routerLink="/livrets/{{c.id}}/sections" class="btn btn-primary"><i class="far fa-eye">sections</i></button>
-                                    <button type="button" class="btn btn-success"><i class="fas fa-edit">modifier</i></button>
-                                  <button type="button" class="btn btn-danger"><i class="far fa-trash-alt">supprimer</i></button>
+                                  <button type="button" routerLink="/livrets/{{c.id}}/sections" class="btn btn-primary"><i class="far fa-eye">sections</i></button>
+                                    <!-- <button type="button" class="btn btn-success"><i class="fas fa-edit">modifier</i></button> -->
+                                  <button class="btn btn-danger" (click)="deleteLivret(1)"><i class="far fa-trash-alt">supprimer</i></button>
                                   </td>
                                 </tr>
                                 
