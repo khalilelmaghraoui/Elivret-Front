@@ -23,6 +23,6 @@ export class LivretServiceService {
   }
 
   deleteLivret(livretId:number){
-    return this.http.delete(this.BaseUrl+"elivrets/"+livretId)
+    return this.http.delete(this.BaseUrl+"elivret/"+livretId)
   }
 }

@@ -50,10 +50,13 @@ export class LivretComponent implements OnInit {
 
   deleteLivret(id:number){
 
-    this.livret.deleteLivret(id).subscribe({
-      next:(res)=>{
-        alert("livret deleted")
-      }
+    this.livret.deleteLivret(id).subscribe((data:any)=>{
+      this.livret.livrets().subscribe((data:any)=>{
+        this.elivrets=data;
+        console.log(this.elivrets);
+  
+      })
+
     })
   }
   
