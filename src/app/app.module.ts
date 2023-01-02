@@ -28,6 +28,9 @@ import {MatIconModule} from '@angular/material/icon';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
+import {MatSelectModule} from '@angular/material/select';
+
+
 
 
 @NgModule({
@@ -41,7 +44,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,MatButtonModule,MatMenuModule,MatCardModule,MatListModule,
+    AppRoutingModule,MatButtonModule,MatMenuModule,MatCardModule,MatListModule,MatSelectModule,
     MatTableModule,HttpClientModule,MatButtonModule,MatInputModule,
     FormsModule,BrowserAnimationsModule,
     MatSnackBarModule,MatToolbarModule,MatIconModule
