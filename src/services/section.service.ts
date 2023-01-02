@@ -32,7 +32,8 @@ export class SectionService implements OnInit{
   }
 
   public updateVisibility(section: any) {
-    return this.http.post(this.BaseUrl + "sections/" + section.id +  "updateVisibility",section);
+    let data:number = (section.visibility == "true" ) ? 1 : 0;  
+    return this.http.post(this.BaseUrl + "sections/" + section.id +  "/updateVisibility", data);
   }
 
   
