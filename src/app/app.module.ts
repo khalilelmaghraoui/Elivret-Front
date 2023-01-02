@@ -29,6 +29,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
 import {MatSelectModule} from '@angular/material/select';
+import { SectionQuestionsComponent } from './section-questions/section-questions.component';
 
 
 
@@ -40,7 +41,7 @@ import {MatSelectModule} from '@angular/material/select';
     AddLivretComponent,
     SectionComponent,
     ViewLivretComponent,
-    AddSectionComponent,NavbarComponent, SidebarComponent
+    AddSectionComponent,NavbarComponent, SidebarComponent, SectionQuestionsComponent
   ],
   imports: [
     BrowserModule,
