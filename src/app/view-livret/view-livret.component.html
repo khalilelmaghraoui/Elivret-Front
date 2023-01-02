@@ -15,26 +15,22 @@
     
                                 </tr>
                               </thead>
-                              <tbody *ngFor="let c of sections">
+                              <tbody *ngFor="let c of sections;let indexOfelement=index;">
                                 <tr>
                                   <td>{{c.title}}</td>
                                   <td>
                                     {{c.personType}}
                                   </td>
                                   <td>
-                                    <form class="visibilityFrom" (ngSubmit)="visibilityFrom()">
-                                      <input type="hidden" name="id" [(ngModel)]="visibilityModel.id" value="2"/>
-                                      <div class="dropdown">
-                                        <mat-form-field appearance="fill">
-                                          <mat-label>{{c.visibility}}</mat-label>
-                                          <mat-select name="visibility" [(ngModel)]="visibilityModel.visibility" >
-                                            <mat-option value="true">true</mat-option>
-                                            <mat-option value="false">false</mat-option>
-                                          </mat-select>
-                                        </mat-form-field>
-                                      </div>
+                                    <form  class="visibilityFrom" (ngSubmit)="visibilityFrom($event)">
+                                      <input type="hidden" name="index"  value="{{indexOfelement}}"/>
+                                      <select name="visibilty" [(ngModel)]="c.visibility">
+                                        <option value="true" >true</option>
+                                        <option value="false" >false</option>
+                                      </select>
+
                                       <div class="changeBtn container text-center mt15">
-                                          <button mat-raised-button  color="primary"> change </button>
+                                          <button mat-raised-button color="primary"> change </button>
                                       </div>
                                     
                                         
