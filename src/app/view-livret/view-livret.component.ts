@@ -9,7 +9,7 @@ import { SectionService } from 'src/services/section.service';
 })
 export class ViewLivretComponent implements OnInit{
 
-  sid: any;
+  livretId: any;
  
   sections=[{
     title:'test section 1',
@@ -24,20 +24,38 @@ export class ViewLivretComponent implements OnInit{
       id:'2'
     }
 
-  }]
+  }];
+
+  section={
+    id:'',
+    title: '',
+  }
 
   ngOnInit(): void {
 
-    this.Ssection.section(this.sid).subscribe((data:any)=>{
+    this.Ssection.section(this.livretId).subscribe((data:any)=>{
       this.sections=data;
       console.log(this.sections);
     })
   }
   
   constructor(private Ssection:SectionService,private route:ActivatedRoute){
-    this.sid= this.route.snapshot.paramMap.get('id');
-   console.log(this.sid);
+    this.livretId= this.route.snapshot.paramMap.get('id');
+   console.log(this.livretId);
     
+  }
+
+  
+
+    formSubmit(){
+      this.Ssection.addSection(this.livretId,this.section).subscribe((data)=>{
+        this.section.title='';
+        this.Ssection.section(this.livretId).subscribe((data:any)=>{
+          this.sections=data;
+          console.log(this.sections);
+        })
+      })
+
   }
 
 

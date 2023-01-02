@@ -5,6 +5,7 @@ import { Injectable, OnInit } from '@angular/core';
   providedIn: 'root'
 })
 export class SectionService implements OnInit{
+  
 
   readonly BaseUrl="http://localhost:8080/api/elivret/"
   readonly Get="http://localhost:8080/api/elivret/1/sections"
@@ -12,7 +13,8 @@ export class SectionService implements OnInit{
   
   constructor(private http:HttpClient) {
 
-  
+
+    
    }
   ngOnInit(): void {
     throw new Error('Method not implemented.');
@@ -22,6 +24,11 @@ export class SectionService implements OnInit{
    public section(sid:any){
     return this.http.get(this.BaseUrl+sid+"/sections");
    }
+
+
+  public addSection(livretId:any,section: any){
+    return this.http.post(this.BaseUrl + livretId + "/sections/add",section);
+  }
 
   
 

@@ -25,7 +25,7 @@ const routes: Routes = [
     
   },
   {
-    path: 'livrets/:sid/newSection',
+    path: 'livrets/:livretId/newSection',
     component:AddSectionComponent,
     
     

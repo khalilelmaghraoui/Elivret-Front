@@ -4,7 +4,7 @@
                         <div mat-subheader>show All sections</div>
                         <mat-list-item *ngFor="let c of sections" >
                           
-                          <button  mat-raised-button color="accent" >{{c.title}}</button>
+                          <button routerLink="'/livrets/'+livretId+'/newSection" mat-raised-button color="accent" >{{c.title}}</button>
                           
 
                         </mat-list-item>
@@ -13,10 +13,30 @@
                         </mat-divider>
                        
                       </mat-list>
+                      
+
+
                       <mat-card>
-            
-                        <div class="container text-center mt20" >
-                            <button routerLink="'/livrets/'+sectionId+'/newSection" mat-raised-button color="primary"> add section</button>
+
+                        <div class="bootstrap-wrapper">
+                            <div class="row">
+                                <div class="col-md-8 offset-md-2">
+                                    <form (ngSubmit)="formSubmit()">
+                                        <mat-form-field class="w100" appearance="outline">
+                                            <label>title</label>
+                                            <input required type="text" name="title" [(ngModel)]="section.title" matInput placeholder="enter here" >
+                                            
+                                          </mat-form-field>  
+                                          <div class="container text-center mt15">
+                                            <button mat-raised-button  color="primary"> add section </button>
+                                        </div>
+                                    
+                                        
+                                    </form>
+                                    
+                       
+                                </div>
+                            </div>
                         </div>
-            
+                       
                     </mat-card>
