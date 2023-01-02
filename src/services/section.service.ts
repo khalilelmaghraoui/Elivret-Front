@@ -5,6 +5,7 @@ import { Injectable, OnInit } from '@angular/core';
   providedIn: 'root'
 })
 export class SectionService implements OnInit{
+ 
   
 
   readonly BaseUrl="http://localhost:8080/api/elivret/"
@@ -26,8 +27,12 @@ export class SectionService implements OnInit{
    }
 
 
-  public addSection(livretId:any,section: any){
+  public addSection(livretId:any, section: any){
     return this.http.post(this.BaseUrl + livretId + "/sections/add",section);
+  }
+
+  public updateVisibility(section: any) {
+    return this.http.post(this.BaseUrl + "sections/" + section.id +  "updateVisibility",section);
   }
 
   

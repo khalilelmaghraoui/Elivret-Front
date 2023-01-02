@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SectionService } from 'src/services/section.service';
-import { MatSelectModule } from '@angular/material';
 
 
 @Component({
@@ -11,28 +10,33 @@ import { MatSelectModule } from '@angular/material';
 })
 
 export class ViewLivretComponent implements OnInit{
-  selected = 'option2';
+  
   livretId: any;
- 
+
+  selected = 'option2';
+
   sections=[{
     title:'test section 1',
     personType:'',
     id:'1',
-    visibility:''
+    visibility:'true'
   },
   {
     title:'test section 1',
     personType:'',
     id:'2',
-    visibility:''
+    visibility:'true'
   }];
+
+
 
   section={
     id:'',
     title: '',
     personType:'',
-    visibility:''
+    visibility:'true'
   }
+
 
   ngOnInit(): void {
 
@@ -60,6 +64,29 @@ export class ViewLivretComponent implements OnInit{
       })
 
   }
+
+  
+  visibilityModel={
+    id:'',
+    visibility:''
+  }
+
+ 
+  visibilityFrom(){
+
+ 
+    // this.Ssection.updateVisibility(this.visibilityModel).subscribe((data)=>{
+
+    //   this.Ssection.section(this.livretId).subscribe((data:any)=>{
+    //     this.sections=data;
+    //     console.log(this.sections);
+    //   })
+    
+    console.log(this.visibilityModel.id);
+
+}
+
+  
 
 
 
