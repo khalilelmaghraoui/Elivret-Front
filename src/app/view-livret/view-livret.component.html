@@ -22,7 +22,23 @@
                                     {{c.personType}}
                                   </td>
                                   <td>
-                                    {{c.personType}}
+                                    <form class="visibilityFrom" (ngSubmit)="visibilityFrom()">
+                                      <input type="hidden" name="id" [(ngModel)]="visibilityModel.id" value="2"/>
+                                      <div class="dropdown">
+                                        <mat-form-field appearance="fill">
+                                          <mat-label>{{c.visibility}}</mat-label>
+                                          <mat-select name="visibility" [(ngModel)]="visibilityModel.visibility" >
+                                            <mat-option value="true">true</mat-option>
+                                            <mat-option value="false">false</mat-option>
+                                          </mat-select>
+                                        </mat-form-field>
+                                      </div>
+                                      <div class="changeBtn container text-center mt15">
+                                          <button mat-raised-button  color="primary"> change </button>
+                                      </div>
+                                    
+                                        
+                                    </form>
                                   </td>
                                   <td>
                                   <button type="button" routerLink="/livrets/{{c.id}}/sections" class="btn btn-primary"><i class="far fa-eye">Questions</i></button>
@@ -38,40 +54,41 @@
                       </div>
                       
 
-                      <mat-card>
 
-                        <div class="bootstrap-wrapper">
-                            <div class="row">
-                                <div class="col-md-8 offset-md-2">
-                                    <form (ngSubmit)="formSubmit()">
+                      <div>
+                        <mat-card>
+
+                          <div class="bootstrap-wrapper">
+                              <div class="row">
+                                  <div class="col-md-8 offset-md-2">
+                                      <form (ngSubmit)="formSubmit()">
+                                          <div>
+                                          <mat-form-field class="w100" appearance="outline">
+                                            <label>Section title</label>
+                                            <input required type="text" name="title" [(ngModel)]="section.title" matInput placeholder="enter here" >
+                                          </mat-form-field>  
+                                        </div>
                                         <div>
-                                        <mat-form-field class="w100" appearance="outline">
-                                          <label>Section title</label>
-                                          <input required type="text" name="title" [(ngModel)]="section.title" matInput placeholder="enter here" >
-                                        </mat-form-field>  
-                                      </div>
-                                      <div>
-                                        <mat-form-field appearance="fill">
-                                          <mat-label>Fill By</mat-label>
-                                          <mat-select name="personType" [(ngModel)]="section.personType" [(value)]="selected">
-                                            <mat-option value="Tuteur">Tuteur</mat-option>
-                                            <mat-option value="Responsable de formation">Responsable de formation</mat-option>
-                                            <mat-option value="Alternant">Alternant</mat-option>
-                                          </mat-select>
-                                        </mat-form-field>
-                                      </div> 
-                                         
-                                      <div class="container text-center mt15">
-                                          <button mat-raised-button  color="primary"> add section </button>
-                                      </div>
-                                    
-                                        
-                                    </form>
-                                    
-                       
-                                </div>
-                            </div>
-                        </div>
-                       
-                    </mat-card>
-                   
+                                          <mat-form-field appearance="fill">
+                                            <mat-label>Fill By</mat-label>
+                                            <mat-select name="personType" [(ngModel)]="section.personType" [(value)]="selected">
+                                              <mat-option value="Tuteur">Tuteur</mat-option>
+                                              <mat-option value="Responsable de formation">Responsable de formation</mat-option>
+                                              <mat-option value="Alternant">Alternant</mat-option>
+                                            </mat-select>
+                                          </mat-form-field>
+                                        </div> 
+                                           
+                                        <div class="container text-center mt15">
+                                            <button mat-raised-button  color="primary"> add section </button>
+                                        </div>
+                                      
+                                          
+                                      </form>
+                                      
+                         
+                                  </div>
+                              </div>
+                          </div>
+                         
+                      </mat-card>
