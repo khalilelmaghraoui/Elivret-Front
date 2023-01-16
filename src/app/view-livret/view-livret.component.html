@@ -39,7 +39,7 @@
                                   <td>
                                   <button type="button" routerLink="/livrets/{{c.id}}/sections" class="btn btn-primary"><i class="far fa-eye">Questions</i></button>
                                     <!-- <button type="button" class="btn btn-success"><i class="fas fa-edit">modifier</i></button> -->
-                                  <button class="btn btn-danger" ><i class="far fa-trash-alt">supprimer</i></button>
+                                  <button class="btn btn-danger" (click)="deleteSection(c.id)" ><i class="far fa-trash-alt">delete</i></button>
                                   </td>
                                 </tr>
                                 
@@ -67,7 +67,7 @@
                                         <div>
                                           <mat-form-field appearance="fill">
                                             <mat-label>Fill By</mat-label>
-                                            <mat-select name="personType" [(ngModel)]="section.personType" [(value)]="selected">
+                                            <mat-select required name="personType" [(ngModel)]="section.personType" [(value)]="selected">
                                               <mat-option value="Tuteur">Tuteur</mat-option>
                                               <mat-option value="Responsable de formation">Responsable de formation</mat-option>
                                               <mat-option value="Alternant">Alternant</mat-option>

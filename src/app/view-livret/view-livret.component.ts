@@ -60,14 +60,15 @@ export class ViewLivretComponent implements OnInit{
   
 
     formSubmit(){
-      this.Ssection.addSection(this.livretId,this.section).subscribe((data)=>{
-        this.section.title='';
-        this.Ssection.section(this.livretId).subscribe((data:any)=>{
-          this.sections=data;
-          console.log(this.sections);
+      if(this.section.title && this.section.personType){
+        this.Ssection.addSection(this.livretId,this.section).subscribe((data)=>{
+          this.section.title='';
+          this.Ssection.section(this.livretId).subscribe((data:any)=>{
+            this.sections=data;
+            console.log(this.sections);
+          })
         })
-      })
-
+      }
   }
 
   
@@ -80,6 +81,17 @@ visibilityFrom(event: any){
     let index = event.target.index.value;
     let target = this.sections[index];
     this.Ssection.updateVisibility(target).subscribe((data)=>{})
+}
+
+deleteSection(id:any){
+  console.log(this.sections);
+
+  this.Ssection.deleteSection(id).subscribe((data:any)=>{
+    this.Ssection.section(this.livretId).subscribe((data:any)=>{
+      this.sections=data;
+      console.log(this.sections);
+    })
+  })
 }
 
 
