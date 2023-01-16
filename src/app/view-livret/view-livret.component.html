@@ -1,8 +1,8 @@
-<br>
-<mat-card>
+
+
                       <div class="container">
                         <div class="row">
-                          <div class="col-12">
+                          <div class="col-8">
                             <table class="table table-bordered">
                               <thead>
                                 <tr>
@@ -11,6 +11,8 @@
                                   <th scope="col">visibilty</th>
                                   <th scope="col">actions</th>
 
+                                 
+    
                                 </tr>
                               </thead>
                               <tbody *ngFor="let c of sections;let indexOfelement=index;">
@@ -35,9 +37,9 @@
                                     </form>
                                   </td>
                                   <td>
-                                  <button type="button" routerLink="/questions/{{c.id}}/{{c.title}}" class="btn btn-primary"><i class="far fa-eye">Questions</i></button>
+                                  <button type="button" routerLink="/livrets/{{c.id}}/sections" class="btn btn-primary"><i class="far fa-eye">Questions</i></button>
                                     <!-- <button type="button" class="btn btn-success"><i class="fas fa-edit">modifier</i></button> -->
-                                  <button class="btn btn-danger" ><i class="far fa-trash-alt">supprimer</i></button>
+                                  <button class="btn btn-danger" (click)="deleteSection(c.id)" ><i class="far fa-trash-alt">delete</i></button>
                                   </td>
                                 </tr>
                                 
@@ -48,40 +50,41 @@
                       </div>
                       
 
-                      <mat-card>
 
-                        <div class="bootstrap-wrapper">
-                            <div class="row">
-                                <div class="col-md-12 ">
-                                    <form (ngSubmit)="formSubmit()">
+                      <div>
+                        <mat-card>
+
+                          <div class="bootstrap-wrapper">
+                              <div class="row">
+                                  <div class="col-md-8 offset-md-2">
+                                      <form (ngSubmit)="formSubmit()">
+                                          <div>
+                                          <mat-form-field class="w100" appearance="outline">
+                                            <label>Section title</label>
+                                            <input required type="text" name="title" [(ngModel)]="section.title" matInput placeholder="enter here" >
+                                          </mat-form-field>  
+                                        </div>
                                         <div>
-                                        <mat-form-field class="w100" appearance="outline">
-                                          <label>Section title</label>
-                                          <input required type="text" name="title" [(ngModel)]="section.title" matInput placeholder="enter here" >
-                                        </mat-form-field>  
-                                      </div>
-                                      <div>
-                                        <mat-form-field appearance="fill">
-                                          <mat-label>Fill By</mat-label>
-                                          <mat-select name="personType" [(ngModel)]="section.personType" [(value)]="selected">
-                                            <mat-option value="Tuteur">Tuteur</mat-option>
-                                            <mat-option value="Responsable de formation">Responsable de formation</mat-option>
-                                            <mat-option value="Alternant">Alternant</mat-option>
-                                          </mat-select>
-                                        </mat-form-field>
-                                      </div> 
-                                         
-                                      <div class="container text-center mt15">
-                                          <button mat-raised-button  color="primary"> add section </button>
-                                      </div>
-                                    
-                                        
-                                    </form>
-                                    
-                       
-                                </div>
-                            </div>
-                        </div>
-                       
-                    </mat-card>
-                   
+                                          <mat-form-field appearance="fill">
+                                            <mat-label>Fill By</mat-label>
+                                            <mat-select required name="personType" [(ngModel)]="section.personType" [(value)]="selected">
+                                              <mat-option value="Tuteur">Tuteur</mat-option>
+                                              <mat-option value="Responsable de formation">Responsable de formation</mat-option>
+                                              <mat-option value="Alternant">Alternant</mat-option>
+                                            </mat-select>
+                                          </mat-form-field>
+                                        </div> 
+                                           
+                                        <div class="container text-center mt15">
+                                            <button mat-raised-button  color="primary"> add section </button>
+                                        </div>
+                                      
+                                          
+                                      </form>
+                                      
+                         
+                                  </div>
+                              </div>
+                          </div>
+                         
+                      </mat-card>
