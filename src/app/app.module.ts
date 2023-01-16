@@ -16,7 +16,7 @@ import {MatTableModule} from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http';
 
 import {MatInputModule} from '@angular/material/input';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SectionComponent } from './section/section.component';
 import { ViewLivretComponent } from './view-livret/view-livret.component';
@@ -48,7 +48,7 @@ import { SectionQuestionsComponent } from './section-questions/section-questions
     AppRoutingModule,MatButtonModule,MatMenuModule,MatCardModule,MatListModule,MatSelectModule,
     MatTableModule,HttpClientModule,MatButtonModule,MatInputModule,
     FormsModule,BrowserAnimationsModule,
-    MatSnackBarModule,MatToolbarModule,MatIconModule
+    MatSnackBarModule,MatToolbarModule,MatIconModule,ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
