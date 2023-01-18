@@ -36,52 +36,8 @@
                               <button (click)="addField(fieldType.value, fieldLabel.value)">Add Field</button>
 
                             </form> -->
-<!-- 
-                            <form>
-                              <div *ngFor="let field of formFields">
-                                <label>{{field.label}}</label>
-                                <input [type]="field.type" />
-                              </div>
-                              <div>
-                                <label>Field Label:</label>
-                                <input #fieldLabel />
-                              </div>
-                              <div>
-                                <label>Field Type:</label>
-                                <select #fieldType (change)="addField(fieldType.value,fieldLabel.value)">
-                                  <option value="text">Text</option>
-                                  <option value="options">Options</option>
-                                </select>
-                              </div>
 
-                            </form>
-                            <button (click)="addField(fieldType.value, fieldLabel.value)">Add Field</button> -->
-                            
-                            <form [formGroup]="myForm">
-                              <input type="text" formControlName="question" />
-                              <hr />
-                              <div formArrayName="options">
-                                <div *ngFor="let option of options.controls; let i=index">
-                                  <b>Option {{i}}:</b>
-                                  <div [formGroupName]="i">
-                                    <label>
-                                      Resonse:
-                                      <input type="text" formControlName="response" />
-                                    </label>
-                                    <br />
-                                    <label>
-                                      Valid:
-                                      <input type="checkbox" formControlName="valid" />
-                                    </label>
-                                  </div>
-                                  <hr />
-                                </div>
-                              </div>
-                              <button (click)="addOption()">Add Option</button>
-                            </form>
-                            
-                            <pre><code>{{ myForm.value | json}}</code></pre>
-                            
+                         
                             
                         </mat-card>
                        

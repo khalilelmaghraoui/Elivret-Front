@@ -30,6 +30,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 
 import {MatSelectModule} from '@angular/material/select';
 import { SectionQuestionsComponent } from './section-questions/section-questions.component';
+import { LoginComponent } from './login/login/login.component';
 
 
 
@@ -41,7 +42,7 @@ import { SectionQuestionsComponent } from './section-questions/section-questions
     AddLivretComponent,
     SectionComponent,
     ViewLivretComponent,
-    AddSectionComponent,NavbarComponent, SidebarComponent, SectionQuestionsComponent
+    AddSectionComponent,NavbarComponent, SidebarComponent, SectionQuestionsComponent, LoginComponent
   ],
   imports: [
     BrowserModule,

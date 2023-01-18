@@ -16,7 +16,7 @@ export class SectionQuestionsComponent implements OnInit {
   questions=[];
   formFields: any[] = [];
 
-  myForm: FormGroup;
+   myForm: FormGroup;
   questionForm :any;
 
   
@@ -74,10 +74,11 @@ export class SectionQuestionsComponent implements OnInit {
     );
   }
 
-  onSubmit(questionData :any) {
-    // this.examSimulatorService.addQuestion(questionData);
-    this.questionForm.reset();
-  }
+  // onSubmit(questionData :any) {
+  //   // this.examSimulatorService.addQuestion(questionData);
+    
+  //   this.questionForm.reset();
+  // }
 
 }
       

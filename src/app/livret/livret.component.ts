@@ -16,6 +16,12 @@ export class LivretComponent implements OnInit {
   LId:any;
   elivretId:any;
 
+  elivret={
+    id:'',
+    title: '',
+  }
+
+
   elivrets=[
     {
       id: 1,
@@ -58,6 +64,17 @@ export class LivretComponent implements OnInit {
       })
 
     })
+  }
+  formSubmit(){
+    this.livret.addLivret(this.elivret).subscribe((data)=>{
+      this.elivret.title='';
+      this.livret.livrets().subscribe((data:any)=>{
+        this.elivrets=data;
+        console.log(this.elivrets);
+  
+      })
+    })
+
   }
   
   
