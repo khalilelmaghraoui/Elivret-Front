@@ -1,9 +1,50 @@
 
+                      <br>
 
-                      <div class="container">
+                        <mat-card class="row text-center container">
+
+                          <div class="bootstrap-wrapper">
+                              <div class="row text-center">
+                                  <div class="col-md-12">
+                                      <form (ngSubmit)="formSubmit()">
+                                          <div>
+                                          <mat-form-field class="col-md-8 w100" appearance="outline">
+                                            <label>Section title</label>
+                                            <input required type="text" name="title" [(ngModel)]="section.title" matInput placeholder="enter here" >
+                                          </mat-form-field>  
+                                        </div>
+                                        <div>
+                                          <mat-form-field class="col-md-8" appearance="fill">
+                                            <mat-label>Fill By</mat-label>
+                                            <mat-select required name="personType" [(ngModel)]="section.personType" [(value)]="selected">
+                                              <mat-option value="Tuteur">Tuteur</mat-option>
+                                              <mat-option value="Responsable_de_formation">Responsable de formation</mat-option>
+                                              <mat-option value="Alternant">Alternant</mat-option>
+                                            </mat-select>
+                                          </mat-form-field>
+                                        </div> 
+                                           
+                                        <div class="container col-md-8">
+                                            <button mat-raised-button  color="primary"> add section </button>
+                                        </div>
+                                      
+                                          
+                                      </form>
+                                      
+                         
+                                  </div>
+                              </div>
+                          </div>
+                         
+                      </mat-card>
+
+                      <br>
+
+  <br>
+                  <mat-card class="row text-center container">
                         <div class="row">
-                          <div class="col-8">
-                            <table class="table table-bordered">
+                          <div class="col-md-12">
+                            <table class="table table-bordered w300">
                               <thead>
                                 <tr>
                                   <th scope="col">section</th>
@@ -38,9 +79,9 @@
                                     </form>
                                   </td>
                                   <td>
-                                  <button type="button" routerLink="/livrets/{{c.id}}/sections" class="btn btn-primary"><i class="far fa-eye">Questions</i></button>
+                                  <button type="button" routerLink="/questions/{{c.id}}/{{c.title}}" class="btn btn-primary w-100"><i class="far fa-eye">Questions</i></button>
                                     <!-- <button type="button" class="btn btn-success"><i class="fas fa-edit">modifier</i></button> -->
-                                  <button class="btn btn-danger" (click)="deleteSection(c.id)" ><i class="far fa-trash-alt">delete</i></button>
+                                  <button class="btn btn-danger w-100 mt-15" (click)="deleteSection(c.id)" ><i class="far fa-trash-alt">delete</i></button>
                                   
                                   </td>
                                   <td>
@@ -52,10 +93,10 @@
                                                   <form (ngSubmit)="inviteForm($event)">
                                                       <div>
                                                         <input type="hidden" name="index"  value="{{indexOfelement}}"/>
-                                                        <mat-form-field class="w100" appearance="outline">
+                                                        <mat-form-field class="w70" appearance="outline">
                                                           <input required type="username" name="title" [(ngModel)]="person.userName" matInput placeholder="username" >
                                                         </mat-form-field>  
-                                                        <mat-form-field class="w100" appearance="outline">
+                                                        <mat-form-field class="w70" appearance="outline">
                                                           <input required type="email" name="title" [(ngModel)]="person.email" matInput placeholder="email" >
                                                         </mat-form-field>  
                                                       </div>
@@ -79,10 +120,10 @@
                             </table>
                           </div>
                         </div>
-                      </div>
+                    </mat-card>
                       
 
-
+<!-- 
                       <div>
                         <mat-card>
 
@@ -121,4 +162,4 @@
                         </mat-card>
                       </div>
 
-                      
+                       -->
