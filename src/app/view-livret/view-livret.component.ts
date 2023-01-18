@@ -72,7 +72,6 @@ export class ViewLivretComponent implements OnInit{
   }
 
   
- state=""
 
 
  
@@ -81,6 +80,22 @@ visibilityFrom(event: any){
     let index = event.target.index.value;
     let target = this.sections[index];
     this.Ssection.updateVisibility(target).subscribe((data)=>{})
+}
+
+person ={
+  email:'',
+  personType:'',
+  userName:'',
+}
+
+inviteForm(event: any){
+  let index = event.target.index.value;
+  let target = this.sections[index];
+
+  this.person.personType = target.personType;
+ 
+
+  this.Ssection.invite(target.id,this.person).subscribe((data)=>{})
 }
 
 deleteSection(id:any){
@@ -94,6 +109,11 @@ deleteSection(id:any){
   })
 }
 
+popup = false;
+
+showPopup(state:any){
+  this.popup = state
+}
 
 
 

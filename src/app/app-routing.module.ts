@@ -6,6 +6,7 @@ import { LivretComponent } from './livret/livret.component';
 import { SectionQuestionsComponent } from './section-questions/section-questions.component';
 import { SectionComponent } from './section/section.component';
 import { ViewLivretComponent } from './view-livret/view-livret.component';
+import { TakeSectionComponent } from './section/take-section/take-section.component'; 
 
 const routes: Routes = [
   {
@@ -35,7 +36,11 @@ const routes: Routes = [
   {
     path: 'questions/:id/:title',
     component: SectionQuestionsComponent
-  }
+  },
+  {
+    path: 'section/:id/take',
+    component: TakeSectionComponent
+  },
   
 
 ];

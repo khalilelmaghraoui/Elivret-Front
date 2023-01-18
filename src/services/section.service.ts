@@ -40,4 +40,13 @@ export class SectionService implements OnInit{
     return this.http.delete(this.BaseUrl+"sections/"+sectionId)
   }
 
+  public invite(sectionId:any, person:any){
+    return this.http.post(this.BaseUrl + "sections/" + sectionId +  "/invite",person);
+  }
+
+  public sectionToTake(sid:any,token:any){
+    return this.http.get(this.BaseUrl+"sections/"+sid+"/take?token="+token);
+   }
+
+
 }
