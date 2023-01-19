@@ -13,7 +13,7 @@ import {MatListModule} from '@angular/material/list'
 
 import {MatTableModule} from '@angular/material/table';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import {MatInputModule} from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -33,7 +33,7 @@ import { SectionQuestionsComponent } from './section-questions/section-questions
 import { TakeSectionComponent } from './section/take-section/take-section.component';
 
 import { LoginComponent } from './login/login/login.component';
-
+import { AuthInterceptor } from 'src/services/auth.interceptor';
 
 
 
@@ -53,7 +53,13 @@ import { LoginComponent } from './login/login/login.component';
     FormsModule,BrowserAnimationsModule,
     MatSnackBarModule,MatToolbarModule,MatIconModule,ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
