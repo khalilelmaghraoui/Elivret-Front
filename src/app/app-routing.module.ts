@@ -45,7 +45,7 @@ const routes: Routes = [
     component: SectionQuestionsComponent
   },
   {
-    path: 'section/:id/take',
+    path: 'elivret/:id/take',
     component: TakeSectionComponent
   },
   

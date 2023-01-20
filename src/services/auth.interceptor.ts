@@ -10,9 +10,7 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(private router:Router) {};
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (request.headers.get("skip")){
-      return next.handle(request);
-    }
+    
 
     const  token = localStorage.getItem("token");
 
@@ -23,7 +21,7 @@ export class AuthInterceptor implements HttpInterceptor {
         }
       });
       return next.handle(clone);
-      
+
     } else {
         this.router.navigate(['login']);
     }

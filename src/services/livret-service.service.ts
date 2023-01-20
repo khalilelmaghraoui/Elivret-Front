@@ -25,4 +25,12 @@ export class LivretServiceService {
   deleteLivret(livretId:number){
     return this.http.delete(this.BaseUrl+"elivret/"+livretId)
   }
+
+  public invite(livretId:any, person:any){
+    return this.http.post(this.BaseUrl + "elivret/" + livretId +  "/invite",person);
+  }
+
+  public livretToTake(sid:any){
+    return this.http.get(this.BaseUrl+"elivret/"+sid+"/take");
+   }
 }

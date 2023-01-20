@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SectionService } from 'src/services/section.service';
+import { LivretServiceService } from 'src/services/livret-service.service';
 
 @Component({
   selector: 'app-take-section',
@@ -9,23 +10,38 @@ import { SectionService } from 'src/services/section.service';
 })
 export class TakeSectionComponent {
   selected = 'option2';
+  i=1;
 
   sectionId: any
   token:any
 
-  sections=[{
-    title:'test section 1',
-    personType:'',
-    id:'1',
-    visibility:'true'
-  },
-  {
-    title:'test section 1',
-    personType:'',
-    id:'2',
-    visibility:'true'
-  }];
 
+  LId:any;
+  elivretId:any;
+
+  elivret={
+    id:'',
+    title: '',
+  }
+
+
+  elivrets=[
+    {
+      id: 1,
+      title: "livret 1"
+
+    },
+    {
+      id: 2,
+      title: "livret 2"
+
+    },
+    {
+      id: 3,
+      title: "livret 3"
+
+    }
+  ];
 
 
   section={
@@ -35,11 +51,11 @@ export class TakeSectionComponent {
     visibility:'true'
   }
 
-  constructor(private Ssection:SectionService,private route:ActivatedRoute){
+  constructor(private elivretService:LivretServiceService,private route:ActivatedRoute){
     this.sectionId= this.route.snapshot.paramMap.get('id');
     this.route.queryParams
       .subscribe(params => {
-        console.log(params); // { orderby: "price" }
+        console.log(params); 
         this.token = params['token']
       })
 
@@ -49,10 +65,16 @@ export class TakeSectionComponent {
 
   ngOnInit(): void {
 
-    this.Ssection.sectionToTake(this.sectionId,this.token).subscribe((data:any)=>{
-      this.sections=data;
-      console.log(this.sections);
+    this.elivretService.livretToTake(this.sectionId).subscribe((data:any)=>{
+      this.elivrets=data;
+      console.log(this.elivret);
     })
   }
+
+
+
+
+
+  
 
 }

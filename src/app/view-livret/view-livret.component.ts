@@ -92,8 +92,9 @@ inviteForm(event: any){
   let index = event.target.index.value;
   let target = this.sections[index];
 
-  this.person.personType = target.personType;
+  this.person.personType = target.personType.toLowerCase();
   this.person.userName = this.person.email.toLowerCase();
+  this.person.email = this.person.email.toLowerCase();
 
   this.Ssection.invite(target.id,this.person).subscribe((data)=>{})
 }

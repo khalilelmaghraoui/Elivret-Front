@@ -1,34 +1,27 @@
-
-
-                      <div class="container">
-                        <div class="row">
-                          <div class="col-8">
-                            <table class="table table-bordered">
-                              <thead>
-                                <tr>
-                                  <th scope="col">section</th>
-                                  <th scope="col">filled by</th>
-                                  <th scope="col">actions</th>
-                               </tr>
-                              </thead>
-                              <tbody *ngFor="let c of sections;let indexOfelement=index;">
-                                <tr>
-                                  <td>{{c.title}}</td>
-                                  <td>
-                                    {{c.personType}}
-                                  </td>
-                                  
-                                  <td>
-                                  <button type="button" routerLink="/livrets/{{c.id}}/sections" class="btn btn-primary"><i class="far fa-eye">Questions</i></button>
-                                    <!-- <button type="button" class="btn btn-success"><i class="fas fa-edit">modifier</i></button> -->
-                                  
-                                  </td>
-                                  
-
-                                </tr>
-                                
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                      </div>
+<mat-card  class="row text-center container">
+  <div class="">
+    <div class="row w100">
+      <div class="col-8">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Number</th>
+              <th scope="col">livrets</th>
+              <th scope="col">livret management</th>             
+            </tr>
+          </thead>
+          <tbody *ngFor="let c of elivrets;let indexOfelement=index;">
+            <tr>
+              <th scope="row">{{i}}</th>
+              <td>{{c.title}}</td>
+            
+              <td>
+              <button type="button" routerLink="/livrets/{{c.id}}/sections" class="btn btn-primary"><i class="far fa-eye">sections</i></button>
+              </td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div></mat-card>

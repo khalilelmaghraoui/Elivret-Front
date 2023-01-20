@@ -76,6 +76,25 @@ export class LivretComponent implements OnInit {
     })
 
   }
+
+  person ={
+    email:'',
+    personType:'',
+    userName:'',
+  }
+  
+  inviteForm(event: any){
+    let index = event.target.index.value;
+    let target = this.elivrets[index];
+
+    console.log(target);
+  
+    this.person.personType = "alternant";
+    this.person.userName = this.person.email.toLowerCase();
+    this.person.email = this.person.email.toLowerCase();
+  
+    this.livret.invite(target.id,this.person).subscribe((data)=>{})
+  }
   
   
 

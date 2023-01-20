@@ -30,11 +30,12 @@
                                   <th scope="col">Number</th>
                                   <th scope="col">livrets</th>
                                   <th scope="col">livret management</th>
+                                  <th scope="col">Invite</th>
                                  
                             
                                 </tr>
                               </thead>
-                              <tbody *ngFor="let c of elivrets">
+                              <tbody *ngFor="let c of elivrets;let indexOfelement=index;">
                                 <tr>
                                   <th scope="row">{{i}}</th>
                                   <td>{{c.title}}</td>
@@ -43,6 +44,22 @@
                                   <button type="button" routerLink="/livrets/{{c.id}}/sections" class="btn btn-primary"><i class="far fa-eye">sections</i></button>
                                     <!-- <button type="button" class="btn btn-success"><i class="fas fa-edit">modifier</i></button> -->
                                   <button class="btn btn-danger" (click)="deleteLivret(c.id)"><i class="far fa-trash-alt">Deletes</i></button>
+                                  </td>
+                                  <td>
+                                    <form (ngSubmit)="inviteForm($event)">
+                                      <div>
+                                        <input type="hidden" name="index"  value="{{indexOfelement}}"/>
+                                        <mat-form-field class="w70" appearance="outline">
+                                          <input required type="email" name="title" [(ngModel)]="person.email" matInput placeholder="email" >
+                                        </mat-form-field>  
+                                      </div>
+                                     
+                                    <div class="container text-center mt15">
+                                        <button mat-raised-button  color="primary"> invite </button>
+                                    </div>
+                                  
+                                  </form>
+
                                   </td>
                                 </tr>
                                 

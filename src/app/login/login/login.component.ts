@@ -22,7 +22,6 @@ export class LoginComponent {
         this.authService.login(this.loginDetails).subscribe((data)=>{
           console.log(data);
           localStorage.setItem("token", data);
-          this.router.navigate(['livrets']);
       })
     }
     
