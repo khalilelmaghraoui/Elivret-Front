@@ -9,6 +9,10 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor() {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    if (request.headers.get("skip")){
+      return next.handle(request);
+    }
+    
     return next.handle(this.addAuthToken(request));
   }
 
@@ -16,9 +20,9 @@ export class AuthInterceptor implements HttpInterceptor {
     const  token = localStorage.getItem("token");
 
     return request.clone({
-        setHeaders: {
-          Authorization: `Basic ${token}`
-        }
-    })
+      setHeaders: {
+        Authorization: `Bearer ${token}`
+      }
+  })
   }
 }

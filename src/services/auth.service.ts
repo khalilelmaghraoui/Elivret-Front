@@ -12,7 +12,7 @@ export class AuthService {
   constructor(private http:HttpClient) { }
 
   public login(loginDetails:any){
-    return this.http.post("http://localhost:8080/secu-users/login", loginDetails, {responseType: 'text'});
+    return this.http.post("http://localhost:8080/secu-users/login", loginDetails, {responseType: 'text',headers:{skip:'true'}});
   }
 
 

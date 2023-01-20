@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class LoginComponent {
   loginDetails= {
-    username:'',
+    userName:'',
     password: ''
   }
 
@@ -17,8 +17,10 @@ export class LoginComponent {
   }
 
   loginForm(){
-    if(this.loginDetails.username && this.loginDetails.password){
-      this.authService.login(this.loginDetails).subscribe((data)=>{
+    if(this.loginDetails.userName && this.loginDetails.password){
+        this.authService.login(this.loginDetails).subscribe((data)=>{
+          console.log(data);
+          localStorage.setItem("token", data);
       })
     }
     
