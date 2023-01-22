@@ -5,15 +5,12 @@ import { LivretServiceService } from 'src/services/livret-service.service';
 
 
 @Component({
-  selector: 'app-livret',
-  templateUrl: './livret.component.html',
-  styleUrls: ['./livret.component.css']
+  selector: 'app-user-livret',
+  templateUrl: './user-livret.component.html',
+  styleUrls: ['./user-livret.component.css']
 })
-export class LivretComponent implements OnInit {
-
+export class UserLivretComponent {
   i=1;
-
-  selected = 'option2';
 
   LId:any;
   elivretId:any;
@@ -57,6 +54,8 @@ export class LivretComponent implements OnInit {
     this.LId= this.route.snapshot.params['id'];
     this.livret.livrets().subscribe((data:any)=>{
       this.elivrets=data;
+      console.log(this.elivrets);
+
     })
   }
 
@@ -76,34 +75,12 @@ export class LivretComponent implements OnInit {
       this.elivret.title='';
       this.livret.livrets().subscribe((data:any)=>{
         this.elivrets=data;
+        console.log(this.elivrets);
   
       })
     })
 
   }
 
-  person ={
-    email:'',
-    personType:'',
-    userName:'',
-  }
-  
-  inviteForm(event: any){
-    let index = event.target.index.value;
-    let target = this.elivrets[index];
-  
-    this.person.userName = this.person.email.toLowerCase();
-    this.person.email = this.person.email.toLowerCase();
-    
-    if(this.person.personType && this.person.email){
-      this.livret.invite(target.id,this.person).subscribe((data)=>{
-        console.log("mario");
-      })
-    }
-    
-
-  }
-  
-  
-
+ 
 }

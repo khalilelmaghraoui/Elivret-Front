@@ -51,10 +51,6 @@
                                   <th scope="col">filled by</th>
                                   <th scope="col">visibilty</th>
                                   <th scope="col">actions</th>
-                                  <th scope="col">invite</th>
-
-                                 
-    
                                 </tr>
                               </thead>
                               <tbody *ngFor="let c of sections;let indexOfelement=index;">
@@ -84,32 +80,7 @@
                                   <button class="btn btn-danger w-100 mt-15" (click)="deleteSection(c.id)" ><i class="far fa-trash-alt">delete</i></button>
                                   
                                   </td>
-                                  <td>
-                                    <mat-card>
-
-                                      <div class="bootstrap-wrapper">
-                                          <div class="row">
-                                              <div class="col-md-2 offset-md-1">
-                                                  <form (ngSubmit)="inviteForm($event)">
-                                                      <div>
-                                                        <input type="hidden" name="index"  value="{{indexOfelement}}"/>
-                                                        <mat-form-field class="w70" appearance="outline">
-                                                          <input required type="email" name="title" [(ngModel)]="person.email" matInput placeholder="email" >
-                                                        </mat-form-field>  
-                                                      </div>
-                                                     
-                                                    <div class="container text-center mt15">
-                                                        <button mat-raised-button  color="primary"> invite </button>
-                                                    </div>
-                                                  
-                                                  </form>
-                                                  
-                                     
-                                              </div>
-                                          </div>
-                                      </div>
-                                    </mat-card>
-                                  </td>
+                                  
 
                                 </tr>
                                 

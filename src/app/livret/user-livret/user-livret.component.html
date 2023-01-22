@@ -1,0 +1,39 @@
+     
+                    <mat-card  class="row text-center container">
+                        <div class="">
+                          <div class="row w100">
+                            <div class="col-8">
+                              <table class="table table-bordered">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Number</th>
+                                    <th scope="col">livrets</th>
+                                    <th scope="col">To</th>
+                                    <th scope="col">livret management</th>
+
+                              
+                                  </tr>
+                                </thead>
+                                <tbody *ngFor="let c of elivrets;let indexOfelement=index;">
+                                  <tr>
+                                    <th scope="row">{{i}}</th>
+                                    <td>{{c.title}}</td>
+
+                                    <td>
+                                      <ul>
+                                        <li *ngFor="let p of c.persons;let indexOfelement=index;">
+                                          <strong>{{p.email}}</strong>: <span>{{p.personType}}</span></li>
+                                      </ul>
+                                    </td>
+                                  
+                                    <td>
+                                        <button type="button" routerLink="/user/livrets/{{c.id}}/sections" class="btn btn-primary"><i class="far fa-eye">sections</i></button>
+                                    </td>
+                                   
+                                  </tr>
+                                  
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div></mat-card>

@@ -8,6 +8,8 @@ import { SectionQuestionsComponent } from './section-questions/section-questions
 import { SectionComponent } from './section/section.component';
 import { ViewLivretComponent } from './view-livret/view-livret.component';
 import { TakeSectionComponent } from './section/take-section/take-section.component'; 
+import { UserLivretComponent } from './livret/user-livret/user-livret.component';
+import { UserViewLivretComponent } from './view-livret/user-view-livret/user-view-livret.component';
 
 const routes: Routes = [
   {
@@ -22,6 +24,10 @@ const routes: Routes = [
   
   },
   {
+    path: 'user/livrets',
+    component: UserLivretComponent,
+  },
+  {
     path: 'addLivrets',
     component: AddLivretComponent,
 
@@ -30,8 +36,10 @@ const routes: Routes = [
   {
     path: 'livrets/:id/sections',
     component:ViewLivretComponent,
-    
-    
+  },
+  {
+    path: 'user/livrets/:id/sections',
+    component:UserViewLivretComponent,
   },
   {
     path: 'livrets/:livretId/newSection',

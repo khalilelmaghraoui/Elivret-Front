@@ -34,6 +34,8 @@ import { TakeSectionComponent } from './section/take-section/take-section.compon
 
 import { LoginComponent } from './login/login/login.component';
 import { AuthInterceptor } from 'src/services/auth.interceptor';
+import { UserLivretComponent } from './livret/user-livret/user-livret.component';
+import { UserViewLivretComponent } from './view-livret/user-view-livret/user-view-livret.component';
 
 
 
@@ -44,7 +46,7 @@ import { AuthInterceptor } from 'src/services/auth.interceptor';
     AddLivretComponent,
     SectionComponent,
     ViewLivretComponent,
-    AddSectionComponent,NavbarComponent, SidebarComponent, SectionQuestionsComponent, LoginComponent,TakeSectionComponent
+    AddSectionComponent,NavbarComponent, SidebarComponent, SectionQuestionsComponent, LoginComponent,TakeSectionComponent, UserLivretComponent, UserViewLivretComponent
   ],
   imports: [
     BrowserModule,

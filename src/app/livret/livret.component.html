@@ -19,7 +19,7 @@
                   
                </mat-card>
                <br>
-                    
+ 
                     <mat-card  class="row text-center container">
                       <div class="">
                         <div class="row w100">
@@ -31,6 +31,7 @@
                                   <th scope="col">livrets</th>
                                   <th scope="col">livret management</th>
                                   <th scope="col">Invite</th>
+                                  <th scope="col">To</th>
                                  
                             
                                 </tr>
@@ -51,7 +52,17 @@
                                         <input type="hidden" name="index"  value="{{indexOfelement}}"/>
                                         <mat-form-field class="w70" appearance="outline">
                                           <input required type="email" name="title" [(ngModel)]="person.email" matInput placeholder="email" >
-                                        </mat-form-field>  
+                                        </mat-form-field> 
+                                        <div>
+                                          <mat-form-field class="col-md-8" appearance="fill">
+                                            <mat-label>Fill By</mat-label>
+                                            <mat-select required name="personType" [(ngModel)]="person.personType" [(value)]="selected">
+                                              <mat-option value="Tuteur">Tuteur</mat-option>
+                                              <mat-option value="Responsable_de_formation">Responsable de formation</mat-option>
+                                              <mat-option value="Alternant">Alternant</mat-option>
+                                            </mat-select>
+                                          </mat-form-field>
+                                        </div>  
                                       </div>
                                      
                                     <div class="container text-center mt15">
@@ -60,6 +71,12 @@
                                   
                                   </form>
 
+                                  </td>
+                                  <td>
+                                      <ul>
+                                        <li *ngFor="let p of c.persons;let indexOfelement=index;">
+                                          <strong>{{p.email}}</strong>: <span>{{p.personType}}</span></li>
+                                      </ul>
                                   </td>
                                 </tr>
                                 
