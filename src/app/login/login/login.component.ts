@@ -14,15 +14,22 @@ export class LoginComponent {
     password: ''
   }
 
+  data={
+    token:'',
+    role:''
+  }
+
   constructor(private authService:AuthService,private route:ActivatedRoute, private router:Router){
   }
 
   loginForm(){
     if(this.loginDetails.userName && this.loginDetails.password){
-        this.authService.login(this.loginDetails).subscribe((data)=>{
+        this.authService.login(this.loginDetails).subscribe((data:any)=>{
           console.log(data);
-          localStorage.setItem("token", data);
-          //this.router.navigate(['livrets']);
+          //this.data = data;
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("role", data.role);
+          this.router.navigate(['livrets']);
       })
     }
     

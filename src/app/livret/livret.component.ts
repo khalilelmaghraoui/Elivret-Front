@@ -17,6 +17,17 @@ export class LivretComponent implements OnInit {
 
   LId:any;
   elivretId:any;
+  
+
+
+  isAdmin():boolean{
+    console.log(localStorage.getItem("role"));
+    if(localStorage.getItem("role") == "ROLE_ADMIN"){
+      return true ;
+    }
+      return false;
+  }
+  admin:boolean = this.isAdmin();
 
   elivret={
     id:'',

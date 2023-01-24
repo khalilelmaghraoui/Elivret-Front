@@ -18,6 +18,16 @@ export class ViewLivretComponent implements OnInit{
   
   livretId: any;
 
+
+  isAdmin():boolean{
+    console.log(localStorage.getItem("role"));
+    if(localStorage.getItem("role") == "ROLE_ADMIN"){
+      return true ;
+    }
+      return false;
+  }
+  admin:boolean = this.isAdmin();
+
   selected = 'option2';
 
   sections=[{

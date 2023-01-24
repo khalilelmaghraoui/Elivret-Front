@@ -18,6 +18,16 @@ export class UserViewLivretComponent {
 
   selected = 'option2';
 
+
+  isAdmin():boolean{
+    console.log(localStorage.getItem("role"));
+    if(localStorage.getItem("role") == "ROLE_ADMIN"){
+      return true ;
+    }
+      return false;
+  }
+  admin:boolean = this.isAdmin();
+
   sections=[{
     title:'test section 1',
     personType:'',
