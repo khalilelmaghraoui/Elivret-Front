@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { LivretServiceService } from 'src/services/livret-service.service';
 
@@ -108,12 +109,37 @@ export class LivretComponent implements OnInit {
     
     if(this.person.personType && this.person.email){
       this.livret.invite(target.id,this.person).subscribe((data)=>{
-        console.log("mario");
+        this.livret.livrets().subscribe((data:any)=>{
+          this.elivrets=data;
+    
+        })
       })
     }
-    
-
   }
+
+  isUpdateForm = false;
+  isUpdate(boolean:boolean){
+    this.isUpdateForm = boolean;
+  }
+
+
+  updateLivret(event: any){
+    let index = event.target.index.value;
+    let target = this.elivrets[index];
+
+    let title = target.title;
+
+    console.log(title);
+
+     this.livret.updateLivret(target.id, title).subscribe((data:any)=>{
+       this.livret.livrets().subscribe((data:any)=>{
+         this.elivrets=data;
+         this.isUpdateForm = false;
+       })
+     })
+  }
+
+ 
   
   
 

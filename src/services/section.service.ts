@@ -36,6 +36,12 @@ export class SectionService implements OnInit{
     return this.http.post(this.BaseUrl + "sections/" + section.id +  "/updateVisibility", data);
   }
 
+  public updateSection(sectionId:any, title: any) {
+    return this.http.put(this.BaseUrl + "sections/"+ sectionId, title);
+  }
+
+  
+
   public deleteSection(sectionId:number){
     return this.http.delete(this.BaseUrl+"sections/"+sectionId)
   }

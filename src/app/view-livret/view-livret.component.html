@@ -42,6 +42,7 @@
 
   <br>
                   <mat-card class="row text-center container">
+                      <h1>Title : {{livret.title}}</h1>
                         <div class="row">
                           <div class="col-md-12">
                             <table class="table table-bordered w300">
@@ -55,7 +56,19 @@
                               </thead>
                               <tbody *ngFor="let c of sections;let indexOfelement=index;">
                                 <tr>
-                                  <td>{{c.title}}</td>
+                                  <td>
+                                    <div>title : {{c.title}}</div>
+                                    <form *ngIf="admin && isUpdateForm"  (ngSubmit)="updateSection($event)">
+                                      <input type="hidden" name="index"  value="{{indexOfelement}}"/>
+                                        <div>
+                                          <mat-form-field class="w70" appearance="outline">
+                                            <input required type="title" name="title" [(ngModel)]="c.title" matInput placeholder="title" >
+                                          </mat-form-field> 
+                                        </div>
+                                        <button class="btn btn-secondary"><i class="far fa-trash-alt">submit</i></button>
+                                    
+                                    </form>
+                                  </td>
                                   <td>
                                     {{c.personType}}
                                   </td>
@@ -78,7 +91,8 @@
                                   <button type="button" routerLink="/questions/{{c.id}}/{{c.title}}" class="btn btn-primary w-100"><i class="far fa-eye">Questions</i></button>
                                     <!-- <button type="button" class="btn btn-success"><i class="fas fa-edit">modifier</i></button> -->
                                   <button *ngIf="admin" class="btn btn-danger w-100 mt-15" (click)="deleteSection(c.id)" ><i class="far fa-trash-alt">delete</i></button>
-                                  
+                                  <button *ngIf="admin" class="btn btn-secondary"  (click)="isUpdate(true)"><i class="far fa-trash-alt">update</i></button>
+
                                   </td>
                                   
 

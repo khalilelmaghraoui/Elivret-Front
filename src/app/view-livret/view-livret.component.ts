@@ -5,6 +5,7 @@ import { SectionService } from 'src/services/section.service';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LivretServiceService } from 'src/services/livret-service.service';
    
    
 
@@ -52,6 +53,11 @@ export class ViewLivretComponent implements OnInit{
     visibility:'true'
   }
 
+  livret={
+    id:'',
+    title: '',
+  }
+
 
   ngOnInit(): void {
 
@@ -61,8 +67,11 @@ export class ViewLivretComponent implements OnInit{
     })
   }
   
-  constructor(private Ssection:SectionService,private route:ActivatedRoute){
+  constructor(private Ssection:SectionService, private livretService:LivretServiceService,private route:ActivatedRoute){
     this.livretId= this.route.snapshot.paramMap.get('id');
+    this.livretService.getLivretById(this.livretId).subscribe((data:any)=>{
+      this.livret=data;
+    })
    console.log(this.livretId);
     
   }
@@ -124,6 +133,29 @@ popup = false;
 
 showPopup(state:any){
   this.popup = state
+}
+
+
+isUpdateForm = false;
+isUpdate(boolean:boolean){
+  this.isUpdateForm = true;
+}
+
+
+updateSection(event: any){
+  let index = event.target.index.value;
+  let target = this.sections[index];
+
+  let title = target.title;
+
+  console.log(title);
+
+   this.Ssection.updateSection(target.id, title).subscribe((data:any)=>{
+     this.Ssection.section(this.livretId).subscribe((data:any)=>{
+      this.sections=data;
+      this.isUpdateForm = false;
+    })
+   })
 }
 
 

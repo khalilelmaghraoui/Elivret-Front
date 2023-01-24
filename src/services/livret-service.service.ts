@@ -13,6 +13,10 @@ export class LivretServiceService {
   public livrets(){
       return this.http.get(this.BaseUrl+"all");
   }
+  public getLivretById(livretId:number){
+    return this.http.get(this.BaseUrl+"elivret/"+livretId);
+}
+  
 
   //add livrets
 
@@ -22,12 +26,18 @@ export class LivretServiceService {
 
   }
 
+  public updateLivret(livretId:number, title:any){
+    return this.http.put(this.BaseUrl+"elivret/"+livretId,title);
+  }
+
+  
+
   deleteLivret(livretId:number){
     return this.http.delete(this.BaseUrl+"elivret/"+livretId)
   }
 
   public invite(livretId:any, person:any){
-    return this.http.post(this.BaseUrl + "elivret/" + livretId +  "/invite",person);
+    return this.http.post(this.BaseUrl + "elivret/" + livretId +  "/invite",person,{responseType: 'text'});
   }
 
   public livretToTake(sid:any){
