@@ -1,48 +1,8 @@
 
-                      <br>
-
-                        <mat-card *ngIf="admin" class="row text-center container">
-
-                          <div class="bootstrap-wrapper">
-                              <div class="row text-center">
-                                  <div class="col-md-12">
-                                      <form (ngSubmit)="formSubmit()">
-                                          <div>
-                                          <mat-form-field class="col-md-8 w100" appearance="outline">
-                                            <label>Section title</label>
-                                            <input required type="text" name="title" [(ngModel)]="section.title" matInput placeholder="enter here" >
-                                          </mat-form-field>  
-                                        </div>
-                                        <div>
-                                          <mat-form-field class="col-md-8" appearance="fill">
-                                            <mat-label>Fill By</mat-label>
-                                            <mat-select required name="personType" [(ngModel)]="section.personType" [(value)]="selected">
-                                              <mat-option value="Tuteur">Tuteur</mat-option>
-                                              <mat-option value="Responsable_de_formation">Responsable de formation</mat-option>
-                                              <mat-option value="Alternant">Alternant</mat-option>
-                                            </mat-select>
-                                          </mat-form-field>
-                                        </div> 
-                                           
-                                        <div class="container col-md-8">
-                                            <button mat-raised-button  color="primary"> add section </button>
-                                        </div>
-                                      
-                                          
-                                      </form>
-                                      
-                         
-                                  </div>
-                              </div>
-                          </div>
-                         
-                      </mat-card>
-
-                      <br>
 
   <br>
                   <mat-card class="row text-center container">
-                      <h1>Title : {{livret.title}}</h1>
+                      <h1>Livret : <a routerLink="/livrets/{{livret.id}}">{{livret.title}}</a></h1>
                         <div class="row">
                           <div class="col-md-12">
                             <table class="table table-bordered w300">
@@ -71,6 +31,20 @@
                                   </td>
                                   <td>
                                     {{c.personType}}
+                                    <form *ngIf="admin && isUpdateFillByForm" (ngSubmit)="formUpdateFilledBy()">
+                                      <div>
+                                      <mat-form-field class="col-md-8" appearance="fill">
+                                        <mat-label>Fill By</mat-label>
+                                        <input type="hidden" name="index"  value="{{indexOfelement}}"/>
+                                          <mat-select required name="personType" [(ngModel)]="c.personType" [(value)]="FilledByselected">
+                                            <mat-option value="Tuteur">Tuteur</mat-option>
+                                            <mat-option value="Responsable_de_formation">Responsable de formation</mat-option>
+                                            <mat-option value="Alternant">Alternant</mat-option>
+                                          </mat-select>
+                                      </mat-form-field>
+                                    </div>
+                                      <button class="btn btn-secondary"><i class="far fa-trash-alt">submit</i></button>      
+                                  </form>
                                   </td>
                                   <td *ngIf="admin">
                                     <form  class="visibilityFrom" (ngSubmit)="visibilityFrom($event)">
@@ -103,6 +77,48 @@
                           </div>
                         </div>
                     </mat-card>
+            
+
+                    <br>
+
+                    <mat-card *ngIf="admin" class="row text-center container">
+
+                      <div class="bootstrap-wrapper">
+                          <div class="row text-center">
+                              <div class="col-md-12">
+                                  <form (ngSubmit)="formSubmit()">
+                                      <div>
+                                      <mat-form-field class="col-md-8 w100" appearance="outline">
+                                        <label>Section title</label>
+                                        <input required type="text" name="title" [(ngModel)]="section.title" matInput placeholder="enter here" >
+                                      </mat-form-field>  
+                                    </div>
+                                    <div>
+                                      <mat-form-field class="col-md-8" appearance="fill">
+                                        <mat-label>Fill By</mat-label>
+                                        <mat-select required name="personType" [(ngModel)]="section.personType" [(value)]="selected">
+                                          <mat-option value="Tuteur">Tuteur</mat-option>
+                                          <mat-option value="Responsable_de_formation">Responsable de formation</mat-option>
+                                          <mat-option value="Alternant">Alternant</mat-option>
+                                        </mat-select>
+                                      </mat-form-field>
+                                    </div> 
+                                       
+                                    <div class="container col-md-8">
+                                        <button mat-raised-button  color="primary"> add section </button>
+                                    </div>
+                                  
+                                      
+                                  </form>
+                                  
+                     
+                              </div>
+                          </div>
+                      </div>
+                     
+                  </mat-card>
+
+                  <br>
                       
 
 <!-- 

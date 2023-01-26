@@ -1,0 +1,37 @@
+
+<br>
+         <mat-card class="row text-center container">
+             <h1>List of Livrets</h1>
+             <ul>
+                 <li *ngFor="let c of elivrets;let indexOfelement=index;">
+                    <a routerLink="/livrets/{{c.id}}">title : {{c.title}}</a>
+                 </li>
+                 
+             </ul>
+         </mat-card>
+
+
+         
+
+
+
+         <br>
+         <mat-card *ngIf="admin" class="row text-center container">
+
+         
+                        <form (ngSubmit)="formSubmit()" >
+                            <mat-form-field class="col-md-8 w100" appearance="outline">
+                                <label>title</label>
+                                <input required type="text" name="title" matInput placeholder="enter here" 
+                                [(ngModel)]="elivret.title">
+                              </mat-form-field>
+                               
+                              <div class=" text-center mt15">
+                                <button mat-raised-button  color="primary"> add livret</button>
+                            </div>
+                        
+                            
+                           </form>
+           
+        </mat-card>
+       

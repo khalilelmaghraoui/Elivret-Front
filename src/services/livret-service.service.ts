@@ -13,7 +13,7 @@ export class LivretServiceService {
   public livrets(){
       return this.http.get(this.BaseUrl+"all");
   }
-  public getLivretById(livretId:number){
+  public getLivretById(livretId:any){
     return this.http.get(this.BaseUrl+"elivret/"+livretId);
 }
   
@@ -26,13 +26,13 @@ export class LivretServiceService {
 
   }
 
-  public updateLivret(livretId:number, title:any){
+  public updateLivret(livretId:any, title:any){
     return this.http.put(this.BaseUrl+"elivret/"+livretId,title);
   }
 
   
 
-  deleteLivret(livretId:number){
+  deleteLivret(livretId:any){
     return this.http.delete(this.BaseUrl+"elivret/"+livretId)
   }
 

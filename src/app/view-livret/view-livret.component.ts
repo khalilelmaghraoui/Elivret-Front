@@ -30,6 +30,7 @@ export class ViewLivretComponent implements OnInit{
   admin:boolean = this.isAdmin();
 
   selected = 'option2';
+  FilledByselected = 'option2';
 
   sections=[{
     title:'test section 1',
@@ -90,6 +91,12 @@ export class ViewLivretComponent implements OnInit{
       }
   }
 
+  isUpdateFillByForm= false;
+  
+  formUpdateFilledBy(){
+    
+  }
+
   
 
 
@@ -138,7 +145,13 @@ showPopup(state:any){
 
 isUpdateForm = false;
 isUpdate(boolean:boolean){
-  this.isUpdateForm = true;
+  if (this.isUpdateForm == false){
+    this.isUpdateForm = true; 
+    this.isUpdateFillByForm = true;
+  } else {
+    this.isUpdateForm = false; 
+    this.isUpdateFillByForm = false;
+  }
 }
 
 
