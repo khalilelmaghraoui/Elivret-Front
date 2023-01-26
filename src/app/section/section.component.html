@@ -1,7 +1,7 @@
 
 
   <br>
-  <mat-card *ngIf="sectionData.id" class="row text-center container">
+  <mat-card *ngIf="sectionData.id && (sectionData.visibility || admin)" class="row text-center container">
       <button type="button" class="col-2 btn btn-primary" routerLink="/livrets/{{livret.id}}/sections">« Previous</button>
       <h1> Section details </h1>
         <div class="row">

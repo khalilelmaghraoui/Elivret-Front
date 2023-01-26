@@ -26,6 +26,9 @@ export class SectionService implements OnInit{
     return this.http.get(this.BaseUrl+sid+"/sections");
    }
 
+   public getSectionById(sid:any){
+    return this.http.get(this.BaseUrl+"sections/"+sid);
+   }
 
   public addSection(livretId:any, section: any){
     return this.http.post(this.BaseUrl + livretId + "/sections/add",section);
@@ -38,6 +41,10 @@ export class SectionService implements OnInit{
 
   public updateSection(sectionId:any, title: any) {
     return this.http.put(this.BaseUrl + "sections/"+ sectionId, title);
+  }
+
+  public updatePersonType(sectionId:any, personType: any) {
+    return this.http.put(this.BaseUrl + "sections/"+sectionId+"/updatePersonType", personType);
   }
 
   

@@ -16,6 +16,12 @@ export class LivretServiceService {
   public getLivretById(livretId:any){
     return this.http.get(this.BaseUrl+"elivret/"+livretId);
 }
+
+public getPersonLivrets(peronsId:any){
+  return this.http.get(this.BaseUrl+"elivret/person/"+peronsId);
+}
+
+
   
 
   //add livrets

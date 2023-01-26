@@ -2,9 +2,9 @@
     <mat-card class="row text-center container">
       <button type="button" class="col-2 btn btn-primary" routerLink="/livrets/{{livret.id}}">« Previous</button>
       <h1>List of sections </h1>
-      <ul>
-          <li *ngFor="let s of sections;let indexOfelement=index;">
-            <a routerLink="/livrets/{{livret.id}}/sections/{{s.id}}"><strong>{{s.title}}</strong> ( <strong>{{s.personType}}</strong> ) </a>
+      <ul *ngFor="let s of sections;let indexOfelement=index;">
+          <li *ngIf="s.id && (s.visibility || admin)">
+            <a  routerLink="/livrets/{{livret.id}}/sections/{{s.id}}"><strong>{{s.title}}</strong> ( <strong>{{s.personType}}</strong> ) </a>
           </li>
           
       </ul>

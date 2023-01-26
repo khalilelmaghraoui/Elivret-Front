@@ -16,7 +16,8 @@ export class LoginComponent {
 
   data={
     token:'',
-    role:''
+    role:'',
+    id:''
   }
 
   constructor(private authService:AuthService,private route:ActivatedRoute, private router:Router){
@@ -29,6 +30,7 @@ export class LoginComponent {
           //this.data = data;
           localStorage.setItem("token", data.token);
           localStorage.setItem("role", data.role);
+          localStorage.setItem("personId", data.id);
           this.router.navigate(['livrets']);
       })
     }

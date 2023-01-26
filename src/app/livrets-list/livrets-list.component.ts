@@ -68,17 +68,33 @@ export class LivretsListComponent {
       ]
     }
   ];
+
+  personId:any;
+
   constructor(private livret:LivretServiceService,private route: ActivatedRoute){
     // this.LId=this.route.snapshot.paramMap.get('id');
+    this.personId = localStorage.getItem("personId");
 
     
 
   }
+
+  getLivrets():any{
+    if(this.admin){
+      this.livret.livrets().subscribe((data:any)=>{
+        this.elivrets=data;
+      })
+    }else{
+      this.livret.getPersonLivrets(this.personId).subscribe((data:any)=>{
+        console.log(data);
+        this.elivrets=data;
+      })
+    }
+  }
+
   ngOnInit(): void {
     this.LId= this.route.snapshot.params['id'];
-    this.livret.livrets().subscribe((data:any)=>{
-      this.elivrets=data;
-    })
+      this.getLivrets()
   }
 
   deleteLivret(id:number){
