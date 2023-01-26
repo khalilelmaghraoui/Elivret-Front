@@ -43,6 +43,10 @@ const routes: Routes = [
     component:ViewLivretComponent,
   },
   {
+    path: 'livrets/:id/sections/:sectionId',
+    component:SectionComponent,
+  },
+  {
     path: 'user/livrets/:id/sections',
     component:UserViewLivretComponent,
   },

@@ -89,8 +89,10 @@ export class LivretComponent implements OnInit {
   
     this.person.userName = this.person.email.toLowerCase();
     this.person.email = this.person.email.toLowerCase();
+
+    let validEmail = this.validateEmail(this.person.email);
     
-    if(this.person.personType && this.person.email){
+    if(this.person.personType && validEmail){
       this.livret.invite(target.id,this.person).subscribe((data)=>{
         this.livret.getLivretById(this.elivretId).subscribe((data:any)=>{
           this.livretData=data;
@@ -103,6 +105,14 @@ export class LivretComponent implements OnInit {
       })
     }
   }
+
+   validateEmail = (email:any) => {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
+  };
 
   isUpdateForm = false;
   isUpdate(boolean:boolean){

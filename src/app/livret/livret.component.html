@@ -2,9 +2,9 @@
         
 
                <br>
- 
                     <mat-card *ngIf="livretData.id"  class="row text-center container">
-                      <h1>E-livret</h1>
+                      <button type="button" class="col-2 btn btn-primary" routerLink="/livrets/">« Previous</button>
+                      <h1>Livret details</h1>
                       <div class="">
                         <div class="row w100">
                           <div class="col-8">
@@ -43,21 +43,21 @@
                                   <button type="button" routerLink="/livrets/{{livretData.id}}/sections" class="btn btn-primary"><i class="far fa-eye">sections</i></button>
                                     <!-- <button type="button" class="btn btn-success"><i class="fas fa-edit">modifier</i></button> -->
                                   <button class="btn btn-danger" *ngIf="admin" (click)="deleteLivret(livretData.id)"><i class="far fa-trash-alt">Deletes</i></button>
-                                  <button class="btn btn-secondary"  (click)="isUpdate(true)"><i class="far fa-trash-alt">update</i></button>
+                                  <button class="btn btn-secondary" *ngIf="admin" (click)="isUpdate(true)"><i class="far fa-trash-alt">update</i></button>
                                   </td>
                                   <td *ngIf="admin"> 
                                     <form (ngSubmit)="inviteForm($event)">
                                       <div>
                                         <input type="hidden" name="index"  value="{{livretData.id}}"/>
                                         <mat-form-field class="w70" appearance="outline">
-                                          <input required type="email" name="title" [(ngModel)]="person.email" matInput placeholder="email" >
+                                          <input required type="email" name="title" [(ngModel)]="person.email" matInput [email]="true" placeholder="email" >
                                         </mat-form-field> 
                                         <div>
                                           <mat-form-field class="col-md-8" appearance="fill">
                                             <mat-label>Fill By</mat-label>
                                             <mat-select required name="personType" [(ngModel)]="person.personType" [(value)]="selected">
                                               <mat-option value="Tuteur">Tuteur</mat-option>
-                                              <mat-option value="Responsable_de_formation">Responsable de formation</mat-option>
+                                              <mat-option value="Maitre-apprentissage">Maitre d'apprentissage</mat-option>
                                               <mat-option value="Alternant">Alternant</mat-option>
                                             </mat-select>
                                           </mat-form-field>
