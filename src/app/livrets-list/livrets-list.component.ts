@@ -109,14 +109,15 @@ export class LivretsListComponent {
     })
   }
   formSubmit(){
-    this.livret.addLivret(this.elivret).subscribe((data)=>{
-      this.elivret.title='';
-      this.livret.livrets().subscribe((data:any)=>{
-        this.elivrets=data;
-  
+    if(this.elivret.title){
+      this.livret.addLivret(this.elivret).subscribe((data)=>{
+        this.elivret.title='';
+        this.livret.livrets().subscribe((data:any)=>{
+          this.elivrets=data;
+    
+        })
       })
-    })
-
+    }
   }
 
   person = {

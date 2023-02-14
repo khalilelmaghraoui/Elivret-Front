@@ -95,6 +95,34 @@ export class SectionComponent implements OnInit{
   }
 
   isUpdateFillByForm= false;
+  isUpdateFillByFormButton(boolean:boolean){
+    if (this.isUpdateFillByForm == false){
+      this.isUpdateFillByForm = true;
+    } else {
+      this.isUpdateFillByForm = false;
+    }
+  }
+
+  isUpdateVisibilityButton(boolean:boolean){
+    if (this.isUpdateVisibility == false){
+      this.isUpdateVisibility = true;
+    } else {
+      this.isUpdateVisibility = false;
+    }
+  }
+
+  isUpdateForm = false;
+  isUpdateFormButton(boolean:boolean){
+  if (this.isUpdateForm == false){
+    this.isUpdateForm = true; 
+  } else {
+    this.isUpdateForm = false; 
+  }
+}
+
+ 
+
+
   
   formUpdateFilledBy(){
     this.Ssection.updatePersonType(this.sectionData.id, this.sectionData.personType).subscribe((data:any)=>{
@@ -107,10 +135,12 @@ export class SectionComponent implements OnInit{
 
   
 
-
+isUpdateVisibility = false;
  
-visibilityFrom(event: any){
-    this.Ssection.updateVisibility(this.sectionData).subscribe((data)=>{})
+visibilityFrom(){
+    this.Ssection.updateVisibility(this.sectionData).subscribe((data)=>{
+      this.isUpdateVisibility = false;
+    })
 }
 
 person ={
@@ -145,16 +175,7 @@ showPopup(state:any){
 }
 
 
-isUpdateForm = false;
-isUpdate(boolean:boolean){
-  if (this.isUpdateForm == false){
-    this.isUpdateForm = true; 
-    this.isUpdateFillByForm = true;
-  } else {
-    this.isUpdateForm = false; 
-    this.isUpdateFillByForm = false;
-  }
-}
+
 
 
 updateSection(event: any){
