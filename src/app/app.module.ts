@@ -31,6 +31,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import {MatSelectModule} from '@angular/material/select';
 import { SectionQuestionsComponent } from './section-questions/section-questions.component';
 import { TakeSectionComponent } from './section/take-section/take-section.component';
+import { QuestionsComponent } from './questions/questions.component';
 
 import { LoginComponent } from './login/login/login.component';
 import { AuthInterceptor } from 'src/services/auth.interceptor';
@@ -46,14 +47,14 @@ import { UserViewLivretComponent } from './view-livret/user-view-livret/user-vie
     AddLivretComponent,
     SectionComponent,
     ViewLivretComponent,
-    AddSectionComponent,NavbarComponent, SidebarComponent, SectionQuestionsComponent, LoginComponent,TakeSectionComponent, UserLivretComponent, UserViewLivretComponent
+    AddSectionComponent,NavbarComponent, SidebarComponent, SectionQuestionsComponent, LoginComponent,TakeSectionComponent, UserLivretComponent, UserViewLivretComponent,QuestionsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,MatButtonModule,MatMenuModule,MatCardModule,MatListModule,MatSelectModule,
     MatTableModule,HttpClientModule,MatButtonModule,MatInputModule,
     FormsModule,BrowserAnimationsModule,
-    MatSnackBarModule,MatToolbarModule,MatIconModule,ReactiveFormsModule
+    MatSnackBarModule,MatToolbarModule,MatIconModule,ReactiveFormsModule,ReactiveFormsModule
   ],
   providers: [
     {
