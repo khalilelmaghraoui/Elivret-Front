@@ -11,8 +11,7 @@
                             <table class="table table-bordered">
                               <thead>
                                 <tr>
-                                  <th scope="col">Number</th>
-                                  <th scope="col">livrets</th>
+                                  <th scope="col">livret</th>
                                   <th scope="col">livret management</th>
 
                                   <th scope="col" *ngIf="admin">Invite</th>
@@ -23,9 +22,8 @@
                               </thead>
                               <tbody>
                                 <tr>
-                                  <th scope="row">1</th>
                                   <td>
-                                    <div>title : {{livretData.title}}</div>
+                                    <div> {{livretData.title}} </div>
                                     <form *ngIf="admin && isUpdateForm"  (ngSubmit)="updateLivret($event)">
                                       <input type="hidden" name="index"  value="{{livretData.id}}"/>
                                         <div>
