@@ -1,0 +1,90 @@
+
+<mat-card>
+
+    <br><br>
+                 <form (ngSubmit)="formSubmit()">
+                     <mat-form-field class="w100" appearance="outline">
+                         <label>title</label>
+                         <input required type="text" name="content" matInput placeholder="enter here" 
+                         [(ngModel)]="question.content">
+                         
+                       </mat-form-field>  
+                       <div class="col-3 text-center mt15">
+                         <button mat-raised-button  color="primary"> add question</button>
+                     </div>
+                 
+                     
+                 </form>
+                 
+    
+     
+    
+ </mat-card>
+
+ <br>
+ <mat-divider></mat-divider>
+ <mat-card>
+    <div class="container">
+      <div class="row">
+        <div class="col-8">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">question</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let c of questions">
+              <tr>
+                <td ><div *ngIf="showField != c.id">{{c.content}} </div><div *ngIf="showField === c.id">
+                  <!-- <input [(ngModel)]="updateText" placeholder="{{c.content}}"> -->
+                  
+                    <mat-form-field class="example-full-width">
+                      <input matInput [(ngModel)]="updateText" placeholder="{{c.content}}" >
+                    </mat-form-field>
+                  <button  mat-button (click)="updateQuestion(c)">Save</button> </div></td>
+                
+                
+                
+                <td>
+                  <button class="btn btn-primary" (click)="showUpdateField(c)"><i class="far fa-trash-alt">modify</i></button>
+                  <button class="btn btn-danger"(click)="deleteQuestion(c)"><i class="far fa-trash-alt">Delete</i></button>
+
+
+                </td>
+              
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div></mat-card>
+
+
+<mat-card>
+  <form [formGroup]="questionForm" (ngSubmit)="formSubmit()">
+    <div>
+      <label>question :</label>
+      <br />
+      <input class="form-control" id="content" type="text" formControlName="content">
+      <br />
+      <label>Options</label>
+      <div formArrayName="options">
+        <div *ngFor="let test of arrayOptions; let i = index">
+          <div class=mx-4 [formGroupName]="i">
+            <label>option {{i+1}}</label>
+            <input class="form-control" id="option" type="text" formControlName="option">
+              </div>
+         
+        <button type="button" class="btn-block-option text-primary" (click)="addOption()">
+          <i class="fa fa-plus" aria-hidden="true"></i>Add option
+        </button>
+      </div>
+    </div>
+      </div>
+      <div class="block-content block-content-full block-content-sm bg-body-light font-size-sm">
+        <button class="btn btn-primary" type="submit">Add</button>
+      </div>
+  </form>
+</mat-card>

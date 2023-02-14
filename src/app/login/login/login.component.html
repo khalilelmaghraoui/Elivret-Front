@@ -1,0 +1,35 @@
+<br>
+<br>
+<mat-card>
+
+  <div class="bootstrap-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 offset-md-3">
+                <div class="container text-center">
+                    <img src="../../../assets/6681204.png" alt="" class="img">
+                </div>
+                <h1 class="text-center"> login </h1>
+                <mat-card>
+                    <mat-card-header>
+                      <mat-card-title>Login</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                      <form (ngSubmit)="loginForm()">
+                        <mat-form-field>
+                          <input matInput type="text" placeholder="Username" name="userName" [(ngModel)]="loginDetails.userName" id="username">
+                        </mat-form-field>
+                        <mat-form-field>
+                          <input matInput type="password" placeholder="Password" name="password" [(ngModel)]="loginDetails.password" id="password">
+                        </mat-form-field>
+                        <button mat-raised-button color="primary" type="submit">Submit</button>
+                      </form>
+                    </mat-card-content>
+                  </mat-card>
+
+            </div>
+        </div>
+    </div>
+  </div>
+
+</mat-card>

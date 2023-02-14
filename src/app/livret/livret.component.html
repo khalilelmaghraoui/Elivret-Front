@@ -1,36 +1,79 @@
 
-            
-            <br>
-                      <mat-card>
-                        <mat-card-content>show All livrets</mat-card-content>
-                      </mat-card>
-                        <div class="container  mt20">
-                          <button routerLink="/addLivrets" mat-raised-button color="primary"> add livret</button>
-                      </div>
-                    
-                    
-                      <div class="container">
-                        <div class="row">
+        
+
+               <br>
+                    <mat-card *ngIf="livretData.id"  class="row text-center container">
+                      <button type="button" class="col-2 btn btn-primary" routerLink="/livrets/">« Previous</button>
+                      <h1>Livret details</h1>
+                      <div class="">
+                        <div class="row w100">
                           <div class="col-8">
                             <table class="table table-bordered">
                               <thead>
                                 <tr>
-                                  <th scope="col">numéro</th>
-                                  <th scope="col">livrets</th>
-                                  <th scope="col">getsion livret</th>
+                                  <th scope="col">livret</th>
+                                  <th scope="col">livret management</th>
+
+                                  <th scope="col" *ngIf="admin">Invite</th>
+                                  <th scope="col">To</th>
                                  
                             
                                 </tr>
                               </thead>
-                              <tbody *ngFor="let c of elivrets">
+                              <tbody>
                                 <tr>
-                                  <th scope="row">{{i}}</th>
-                                  <td>{{c.title}}</td>
+                                  <td>
+                                    <div> {{livretData.title}} </div>
+                                    <form *ngIf="admin && isUpdateForm"  (ngSubmit)="updateLivret($event)">
+                                      <input type="hidden" name="index"  value="{{livretData.id}}"/>
+                                        <div>
+                                          <mat-form-field class="w70" appearance="outline">
+                                            <input required type="title" name="title" [(ngModel)]="livretData.title" matInput placeholder="title" >
+                                          </mat-form-field> 
+                                        </div>
+                                        <button class="btn btn-secondary"><i class="far fa-trash-alt">submit</i></button>
+                                    
+                                    </form>
+
+                                  </td>
                                 
                                   <td>
-                                  <button type="button" routerLink="/livrets/{{c.id}}/sections" class="btn btn-primary"><i class="far fa-eye">sections</i></button>
+                                  <button type="button" routerLink="/livrets/{{livretData.id}}/sections" class="btn btn-primary"><i class="far fa-eye">sections</i></button>
                                     <!-- <button type="button" class="btn btn-success"><i class="fas fa-edit">modifier</i></button> -->
-                                  <button class="btn btn-danger" (click)="deleteLivret(c.id)"><i class="far fa-trash-alt">supprimer</i></button>
+                                  <button class="btn btn-danger" *ngIf="admin" (click)="deleteLivret(livretData.id)"><i class="far fa-trash-alt">Deletes</i></button>
+                                  <button class="btn btn-secondary" *ngIf="admin" (click)="isUpdate(true)"><i class="far fa-trash-alt">update</i></button>
+                                  </td>
+                                  <td *ngIf="admin"> 
+                                    <form (ngSubmit)="inviteForm($event)">
+                                      <div>
+                                        <input type="hidden" name="index"  value="{{livretData.id}}"/>
+                                        <mat-form-field class="w70" appearance="outline">
+                                          <input required type="email" name="title" [(ngModel)]="person.email" matInput [email]="true" placeholder="email" >
+                                        </mat-form-field> 
+                                        <div>
+                                          <mat-form-field class="col-md-8" appearance="fill">
+                                            <mat-label>Fill By</mat-label>
+                                            <mat-select required name="personType" [(ngModel)]="person.personType" [(value)]="selected">
+                                              <mat-option value="Tuteur">Tuteur</mat-option>
+                                              <mat-option value="Maitre-apprentissage">Maitre d'apprentissage</mat-option>
+                                              <mat-option value="Alternant">Alternant</mat-option>
+                                            </mat-select>
+                                          </mat-form-field>
+                                        </div>  
+                                      </div>
+                                     
+                                    <div class="container text-center mt15">
+                                        <button mat-raised-button  color="primary"> invite </button>
+                                    </div>
+                                  
+                                  </form>
+
+                                  </td>
+                                  <td>
+                                      <ul>
+                                        <li *ngFor="let p of livretData.persons;let indexOfelement=index;">
+                                          <strong>{{p.email}}</strong>: <span>{{p.personType}}</span></li>
+                                      </ul>
                                   </td>
                                 </tr>
                                 
@@ -38,4 +81,4 @@
                             </table>
                           </div>
                         </div>
-                      </div>
+                      </div></mat-card>
