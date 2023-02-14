@@ -30,14 +30,12 @@
           <table class="table table-bordered">
             <thead>
               <tr>
-                <th scope="col" class="number">Number</th>
                 <th scope="col">question</th>
                 <th scope="col"></th>
               </tr>
             </thead>
-            <tbody *ngFor="let c of questions;let i = index">
+            <tbody *ngFor="let c of questions">
               <tr>
-                <th scope="row" class="number">{{i+1}}</th>
                 <td ><div *ngIf="showField != c.id">{{c.content}} </div><div *ngIf="showField === c.id">
                   <!-- <input [(ngModel)]="updateText" placeholder="{{c.content}}"> -->
                   
@@ -62,3 +60,31 @@
         </div>
       </div>
     </div></mat-card>
+
+
+<mat-card>
+  <form [formGroup]="questionForm" (ngSubmit)="formSubmit()">
+    <div>
+      <label>question :</label>
+      <br />
+      <input class="form-control" id="content" type="text" formControlName="content">
+      <br />
+      <label>Options</label>
+      <div formArrayName="options">
+        <div *ngFor="let test of arrayOptions; let i = index">
+          <div class=mx-4 [formGroupName]="i">
+            <label>option {{i+1}}</label>
+            <input class="form-control" id="option" type="text" formControlName="option">
+              </div>
+         
+        <button type="button" class="btn-block-option text-primary" (click)="addOption()">
+          <i class="fa fa-plus" aria-hidden="true"></i>Add option
+        </button>
+      </div>
+    </div>
+      </div>
+      <div class="block-content block-content-full block-content-sm bg-body-light font-size-sm">
+        <button class="btn btn-primary" type="submit">Add</button>
+      </div>
+  </form>
+</mat-card>

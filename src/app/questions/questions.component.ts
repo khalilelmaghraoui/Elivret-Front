@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormArray, FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { QuestionService } from 'src/services/question.service';
 
@@ -8,6 +9,15 @@ import { QuestionService } from 'src/services/question.service';
   styleUrls: ['./questions.component.css']
 })
 export class QuestionsComponent implements OnInit{
+
+
+  questionForm;
+  arrayOptions:any;
+
+  isDisabled = false;
+
+  
+
   id;
   title;
   
@@ -32,14 +42,19 @@ export class QuestionsComponent implements OnInit{
   ];
 
   
-  constructor(private  questionService:QuestionService,private route:ActivatedRoute){
+  constructor(private  questionService:QuestionService,private route:ActivatedRoute,private formBuilder: FormBuilder){
     this.id=this.route.snapshot.params['id'];
     this.title=this.route.snapshot.params['title'];
 
 
+    this.questionForm = this.formBuilder.group({
+      content: "",
+      type:"multichoice",
+      options: this.formBuilder.array([])
+    });
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.id=this.route.snapshot.params['id'];
 
     this.questionService.getQuestions(this.id).subscribe((data:any)=>{
@@ -47,8 +62,25 @@ export class QuestionsComponent implements OnInit{
       console.log(this.questions);
 
     })
+        this.arrayOptions = [];
 
+    this.addOption();
   }
+
+  onSubmit(questionData:any) {
+    console.log(questionData);
+  }
+ 
+
+  addOption() {
+    const control = <FormArray>this.questionForm.get("options");
+    const newGroup = this.formBuilder.group({
+      option: "",
+    });
+    control.push(newGroup);
+    this.arrayOptions.push(this.questionForm.controls.options.value);
+  }
+  
  
   formSubmit(){
     this.questionService.addQuestion(this.id,this.question).subscribe((data)=>{
@@ -101,6 +133,10 @@ deleteQuestion(question:any) {
   }) 
   this.showField = null;
 
+}
+
+if(){
+  console.log("hello");
 }
 
 }
