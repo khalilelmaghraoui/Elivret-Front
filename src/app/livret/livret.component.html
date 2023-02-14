@@ -1,34 +1,17 @@
 
-            <br>
-                <mat-card *ngIf="admin" class="row text-center container">
+        
 
-                
-                               <form (ngSubmit)="formSubmit()" >
-                                   <mat-form-field class="col-md-8 w100" appearance="outline">
-                                       <label>title</label>
-                                       <input required type="text" name="title" matInput placeholder="enter here" 
-                                       [(ngModel)]="elivret.title">
-                                     </mat-form-field>
-                                      
-                                     <div class=" text-center mt15">
-                                       <button mat-raised-button  color="primary"> add livret</button>
-                                   </div>
-                               
-                                   
-                                  </form>
-                  
-               </mat-card>
                <br>
- 
-                    <mat-card  class="row text-center container">
+                    <mat-card *ngIf="livretData.id"  class="row text-center container">
+                      <button type="button" class="col-2 btn btn-primary" routerLink="/livrets/">« Previous</button>
+                      <h1>Livret details</h1>
                       <div class="">
                         <div class="row w100">
                           <div class="col-8">
                             <table class="table table-bordered">
                               <thead>
                                 <tr>
-                                  <th scope="col">Number</th>
-                                  <th scope="col">livrets</th>
+                                  <th scope="col">livret</th>
                                   <th scope="col">livret management</th>
 
                                   <th scope="col" *ngIf="admin">Invite</th>
@@ -37,29 +20,42 @@
                             
                                 </tr>
                               </thead>
-                              <tbody *ngFor="let c of elivrets;let indexOfelement=index;">
+                              <tbody>
                                 <tr>
-                                  <th scope="row">{{i}}</th>
-                                  <td>{{c.title}}</td>
+                                  <td>
+                                    <div> {{livretData.title}} </div>
+                                    <form *ngIf="admin && isUpdateForm"  (ngSubmit)="updateLivret($event)">
+                                      <input type="hidden" name="index"  value="{{livretData.id}}"/>
+                                        <div>
+                                          <mat-form-field class="w70" appearance="outline">
+                                            <input required type="title" name="title" [(ngModel)]="livretData.title" matInput placeholder="title" >
+                                          </mat-form-field> 
+                                        </div>
+                                        <button class="btn btn-secondary"><i class="far fa-trash-alt">submit</i></button>
+                                    
+                                    </form>
+
+                                  </td>
                                 
                                   <td>
-                                  <button type="button" routerLink="/livrets/{{c.id}}/sections" class="btn btn-primary"><i class="far fa-eye">sections</i></button>
+                                  <button type="button" routerLink="/livrets/{{livretData.id}}/sections" class="btn btn-primary"><i class="far fa-eye">sections</i></button>
                                     <!-- <button type="button" class="btn btn-success"><i class="fas fa-edit">modifier</i></button> -->
-                                  <button class="btn btn-danger" *ngIf="admin" (click)="deleteLivret(c.id)"><i class="far fa-trash-alt">Deletes</i></button>
+                                  <button class="btn btn-danger" *ngIf="admin" (click)="deleteLivret(livretData.id)"><i class="far fa-trash-alt">Deletes</i></button>
+                                  <button class="btn btn-secondary" *ngIf="admin" (click)="isUpdate(true)"><i class="far fa-trash-alt">update</i></button>
                                   </td>
                                   <td *ngIf="admin"> 
                                     <form (ngSubmit)="inviteForm($event)">
                                       <div>
-                                        <input type="hidden" name="index"  value="{{indexOfelement}}"/>
+                                        <input type="hidden" name="index"  value="{{livretData.id}}"/>
                                         <mat-form-field class="w70" appearance="outline">
-                                          <input required type="email" name="title" [(ngModel)]="person.email" matInput placeholder="email" >
+                                          <input required type="email" name="title" [(ngModel)]="person.email" matInput [email]="true" placeholder="email" >
                                         </mat-form-field> 
                                         <div>
                                           <mat-form-field class="col-md-8" appearance="fill">
                                             <mat-label>Fill By</mat-label>
                                             <mat-select required name="personType" [(ngModel)]="person.personType" [(value)]="selected">
                                               <mat-option value="Tuteur">Tuteur</mat-option>
-                                              <mat-option value="Responsable_de_formation">Responsable de formation</mat-option>
+                                              <mat-option value="Maitre-apprentissage">Maitre d'apprentissage</mat-option>
                                               <mat-option value="Alternant">Alternant</mat-option>
                                             </mat-select>
                                           </mat-form-field>
@@ -75,7 +71,7 @@
                                   </td>
                                   <td>
                                       <ul>
-                                        <li *ngFor="let p of c.persons;let indexOfelement=index;">
+                                        <li *ngFor="let p of livretData.persons;let indexOfelement=index;">
                                           <strong>{{p.email}}</strong>: <span>{{p.personType}}</span></li>
                                       </ul>
                                   </td>

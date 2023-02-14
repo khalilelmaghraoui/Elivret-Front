@@ -11,6 +11,7 @@ import { ViewLivretComponent } from './view-livret/view-livret.component';
 import { TakeSectionComponent } from './section/take-section/take-section.component'; 
 import { UserLivretComponent } from './livret/user-livret/user-livret.component';
 import { UserViewLivretComponent } from './view-livret/user-view-livret/user-view-livret.component';
+import { LivretsListComponent } from './livrets-list/livrets-list.component';
 
 const routes: Routes = [
   {
@@ -20,13 +21,17 @@ const routes: Routes = [
   
   },
   {
-    path: 'livrets',
+    path: 'livrets/:id',
     component: LivretComponent,
   
   },
   {
-    path: 'user/livrets',
+    path: 'user/livret',
     component: UserLivretComponent,
+  },
+  {
+    path: 'livrets',
+    component: LivretsListComponent
   },
   {
     path: 'addLivrets',
@@ -37,6 +42,10 @@ const routes: Routes = [
   {
     path: 'livrets/:id/sections',
     component:ViewLivretComponent,
+  },
+  {
+    path: 'livrets/:id/sections/:sectionId',
+    component:SectionComponent,
   },
   {
     path: 'user/livrets/:id/sections',

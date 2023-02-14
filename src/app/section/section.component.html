@@ -1,31 +1,128 @@
-<div class="container-fluid text-center">    
-   
-    <div class=" text-left"> 
-     <br>   
-             </div>
-           </div>
-           <div class="container-fluid text-center">    
- 
-              <div class=" text-left"> 
-               <br>
-                        </div>
-                     </div>
-            
-                     <mat-list>
-                        <div mat-subheader>show All sectionss</div>
-                        <mat-list-item>
-                          <mat-icon matListItemIcon></mat-icon>
-                          
-                          <button  mat-raised-button color="accent" routerLink="/livrets/1"></button>
 
-                        </mat-list-item>
-                        <mat-divider></mat-divider>
-                       
-                      </mat-list>
-                      <mat-card>
-            
-                        <div class="container text-center mt20">
-                            <button routerLink="/addLivrets" mat-raised-button color="primary"> add section</button>
+
+  <br>
+  <mat-card *ngIf="sectionData.id && (sectionData.visibility || admin)" class="row text-center container">
+      <button type="button" class="col-2 btn btn-primary" routerLink="/livrets/{{livret.id}}/sections">« Previous</button>
+      <h1> Section details </h1>
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table table-bordered w300">
+              <thead>
+                <tr>
+                  <th scope="col">section</th>
+                  <th scope="col">filled by</th>
+                  <th scope="col" *ngIf="admin">visibilty</th>
+                  <th scope="col">actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div>title : {{sectionData.title}}</div>
+                    <form *ngIf="admin && isUpdateForm"  (ngSubmit)="updateSection($event)">
+                      <input type="hidden" name="index"  value="{{sectionData.id}}"/>
+                        <div>
+                          <mat-form-field class="w70" appearance="outline">
+                            <input required type="title" name="title" [(ngModel)]="sectionData.title" matInput placeholder="title" >
+                          </mat-form-field> 
                         </div>
-            
-                    </mat-card>
+                        <button class="btn btn-secondary"><i class="far fa-trash-alt">submit</i></button>
+                    
+                    </form>
+                  </td>
+                  <td>
+                    {{sectionData.personType}}
+                    <form *ngIf="admin && isUpdateFillByForm" (ngSubmit)="formUpdateFilledBy()">
+                      <div>
+                      <mat-form-field class="col-md-8" appearance="fill">
+                        <mat-label>Fill By</mat-label>
+                        <input type="hidden" name="index"  value="{{sectionData.id}}"/>
+                          <mat-select required name="personType" [(ngModel)]="sectionData.personType" [(value)]="FilledByselected">
+                            <mat-option value="Tuteur">Tuteur</mat-option>
+                            <mat-option value="Maitre-apprentissage">Maitre d'apprentissage</mat-option>
+                            <mat-option value="Alternant">Alternant</mat-option>
+                          </mat-select>
+                      </mat-form-field>
+                    </div>
+                      <button class="btn btn-secondary"><i class="far fa-trash-alt">submit</i></button>      
+                  </form>
+                  </td>
+                  <td *ngIf="admin">
+                    <form  class="visibilityFrom" (ngSubmit)="visibilityFrom($event)">
+                      <input type="hidden" name="index"  value="{{sectionData.id}}"/>
+                      <select name="visibilty" [(ngModel)]="sectionData.visibility">
+                        <option value="true" >true</option>
+                        <option value="false" >false</option>
+                      </select>
+
+                      <div class="changeBtn container text-center mt15">
+                          <button mat-raised-button color="primary"> change </button>
+                      </div>
+                    
+                        
+                    </form>
+                  </td>
+                  <td>
+                  <button type="button" routerLink="/questions/{{sectionData.id}}/{{sectionData.title}}" class="btn btn-primary w-100"><i class="far fa-eye">Questions</i></button>
+                    <!-- <button type="button" class="btn btn-success"><i class="fas fa-edit">modifier</i></button> -->
+                  <button *ngIf="admin" class="btn btn-danger w-100 mt-15" (click)="deleteSection(sectionData.id)" ><i class="far fa-trash-alt">delete</i></button>
+                  <button *ngIf="admin" class="btn btn-secondary"  (click)="isUpdate(true)"><i class="far fa-trash-alt">update</i></button>
+
+                  </td>
+                  
+
+                </tr>
+                
+              </tbody>
+            </table>
+          </div>
+        </div>
+    </mat-card>
+
+
+    <br>
+
+   
+  <br>
+      
+
+<!-- 
+      <div>
+        <mat-card>
+
+          <div class="bootstrap-wrapper">
+              <div class="row">
+                  <div class="col-md-8 offset-md-2">
+                      <form (ngSubmit)="formSubmit()">
+                          <div>
+                          <mat-form-field class="w100" appearance="outline">
+                            <label>Section title</label>
+                            <input required type="text" name="title" [(ngModel)]="section.title" matInput placeholder="enter here" >
+                          </mat-form-field>  
+                        </div>
+                        <div>
+                          <mat-form-field appearance="fill">
+                            <mat-label>Fill By</mat-label>
+                            <mat-select required name="personType" [(ngModel)]="section.personType" [(value)]="selected">
+                              <mat-option value="Tuteur">Tuteur</mat-option>
+                              <mat-option value="Responsable_de_formation">Responsable de formation</mat-option>
+                              <mat-option value="Alternant">Alternant</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div> 
+                           
+                        <div class="container text-center mt15">
+                            <button mat-raised-button  color="primary"> add section </button>
+                        </div>
+                      
+                          
+                      </form>
+                      
+         
+                  </div>
+              </div>
+          </div>
+        </mat-card>
+      </div>
+
+       -->

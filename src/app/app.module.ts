@@ -37,6 +37,7 @@ import { LoginComponent } from './login/login/login.component';
 import { AuthInterceptor } from 'src/services/auth.interceptor';
 import { UserLivretComponent } from './livret/user-livret/user-livret.component';
 import { UserViewLivretComponent } from './view-livret/user-view-livret/user-view-livret.component';
+import { LivretsListComponent } from './livrets-list/livrets-list.component';
 
 
 
@@ -47,7 +48,8 @@ import { UserViewLivretComponent } from './view-livret/user-view-livret/user-vie
     AddLivretComponent,
     SectionComponent,
     ViewLivretComponent,
-    AddSectionComponent,NavbarComponent, SidebarComponent, SectionQuestionsComponent, LoginComponent,TakeSectionComponent, UserLivretComponent, UserViewLivretComponent,QuestionsComponent
+    AddSectionComponent,NavbarComponent, SidebarComponent, SectionQuestionsComponent, LoginComponent,TakeSectionComponent, UserLivretComponent, UserViewLivretComponent,QuestionsComponent,LivretsListComponent
+
   ],
   imports: [
     BrowserModule,
