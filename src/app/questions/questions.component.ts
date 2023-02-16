@@ -10,6 +10,25 @@ import { QuestionService } from 'src/services/question.service';
 })
 export class QuestionsComponent implements OnInit{
 
+  showForm1: boolean = false;
+  showForm2: boolean = false;
+
+  onFormSelectionChange(event: any) {
+    const formSelected = event.value;
+    this.showForm1 = formSelected === 'form1';
+    this.showForm2 = formSelected === 'form2';
+  }
+  
+  showForm11() {
+    this.showForm1 = true;
+    this.showForm2 = false;
+  }
+  
+  showForm22() {
+    this.showForm1 = false;
+    this.showForm2 = true;
+  }
+  
 
   questionForm;
   arrayOptions:any;
@@ -24,19 +43,22 @@ export class QuestionsComponent implements OnInit{
   question={
     id:'',
     content:"",
-    type:"text"
+    type:"text",
+    options:[]
   }
 
   questions=[
     {
       id:1,
       content:"question 1",
-      type:'text'
+      type:'text',
+      options:[]
 
     },{
       id:2,
       content:"question 1",
-      type:"text"
+      type:"text",
+      options:[]
 
     }
   ];
@@ -92,7 +114,26 @@ export class QuestionsComponent implements OnInit{
       })
     })
 
-  }
+  }    
+  formSubmit2(formData:any){
+    const questionData = {
+      content: formData.content,
+      type:formData.type="multichoice",
+      options: formData.options.map((option: any) => option.option)
+    };
+    this.questionService.addQuestion(this.id,questionData).subscribe((data)=>{
+      this.question.content='';
+      this.question.options=[];
+      this.questionService.getQuestions(this.id).subscribe((data:any)=>{
+      this.questions=data;
+      console.log(this.questions);
+  
+      })
+    })
+
+
+
+  } 
 
   modifyQuestion(question:any){
 
