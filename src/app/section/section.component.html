@@ -1,7 +1,7 @@
 
 
   <br>
-  <mat-card *ngIf="sectionData.id && (sectionData.visibility || admin)" class="row text-center container">
+  <mat-card *ngIf="sectionData.id && (sectionData.visibility || canUpdateVisiblity)" class="row text-center container">
       <button type="button" class="col-2 btn btn-primary" routerLink="/livrets/{{livret.id}}/sections">« Previous</button>
       <h1> Section details </h1>
         <div class="row">
@@ -11,14 +11,14 @@
                 <tr>
                   <th scope="col">section</th>
                   <th scope="col">filled by</th>
-                  <th scope="col" *ngIf="admin">visibilty</th>
+                  <th scope="col" *ngIf="canUpdateVisiblity">visibilty</th>
                   <th scope="col">actions</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>
-                    <div>title : {{sectionData.title}}</div>
+                    <div>{{sectionData.title}}</div>
                     <form *ngIf="admin && isUpdateForm"  (ngSubmit)="updateSection($event)">
                       <input type="hidden" name="index"  value="{{sectionData.id}}"/>
                         <div>
@@ -27,8 +27,10 @@
                           </mat-form-field> 
                         </div>
                         <button class="btn btn-secondary"><i class="far fa-trash-alt">submit</i></button>
-                    
                     </form>
+                    <div>
+                      <button *ngIf="admin && !isUpdateForm" class="btn btn-secondary"  (click)="isUpdateFormButton(true)"><i class="far fa-trash-alt">update</i></button>
+                    </div>
                   </td>
                   <td>
                     {{sectionData.personType}}
@@ -44,30 +46,43 @@
                           </mat-select>
                       </mat-form-field>
                     </div>
-                      <button class="btn btn-secondary"><i class="far fa-trash-alt">submit</i></button>      
+                    <div>
+                      <button class="btn btn-secondary"><i class="far fa-trash-alt">submit</i></button>   
+                    </div>   
                   </form>
+                  <div>
+                    <button *ngIf="admin && !isUpdateFillByForm" class="btn btn-secondary"  (click)="isUpdateFillByFormButton(true)"><i class="far fa-trash-alt">update</i></button>
+                  </div>
                   </td>
-                  <td *ngIf="admin">
-                    <form  class="visibilityFrom" (ngSubmit)="visibilityFrom($event)">
-                      <input type="hidden" name="index"  value="{{sectionData.id}}"/>
-                      <select name="visibilty" [(ngModel)]="sectionData.visibility">
-                        <option value="true" >true</option>
-                        <option value="false" >false</option>
-                      </select>
+                  <td *ngIf="canUpdateVisiblity">
+                    {{sectionData.visibility}}
 
-                      <div class="changeBtn container text-center mt15">
-                          <button mat-raised-button color="primary"> change </button>
-                      </div>
+
+                    <form *ngIf="isUpdateVisibility" class="visibilityFrom" (ngSubmit)="visibilityFrom()">
+                      <div>
+                      <mat-form-field class="col-md-8" appearance="fill">
+                        <mat-label>Visibilty</mat-label>
+                        <input type="hidden" name="index"  value="{{sectionData.id}}"/>
+                          <mat-select required name="visibilty" [(ngModel)]="sectionData.visibility">
+                            <mat-option value="true" >true</mat-option>
+                            <mat-option value="false" >false</mat-option>
+                          </mat-select>
+                      </mat-form-field>
+                    </div>
+                    <div>
+                      <button class="btn btn-secondary"><i class="far fa-trash-alt">submit</i></button>   
+                    </div>   
+                  </form>
+                  <div>
+                    <button *ngIf="canUpdateVisiblity && !isUpdateVisibility" class="btn btn-secondary"  (click)="isUpdateVisibilityButton(true)"><i class="far fa-trash-alt">update</i></button>
+                  </div>
+
                     
-                        
-                    </form>
                   </td>
                   <td>
                   <button type="button" routerLink="/questions/{{sectionData.id}}/{{sectionData.title}}" class="btn btn-primary w-100"><i class="far fa-eye">Questions</i></button>
                     <!-- <button type="button" class="btn btn-success"><i class="fas fa-edit">modifier</i></button> -->
                   <button *ngIf="admin" class="btn btn-danger w-100 mt-15" (click)="deleteSection(sectionData.id)" ><i class="far fa-trash-alt">delete</i></button>
-                  <button *ngIf="admin" class="btn btn-secondary"  (click)="isUpdate(true)"><i class="far fa-trash-alt">update</i></button>
-
                   </td>
                   
 
