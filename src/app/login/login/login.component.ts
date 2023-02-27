@@ -17,7 +17,8 @@ export class LoginComponent {
   data={
     token:'',
     role:'',
-    id:''
+    id:'',
+    email:''
   }
 
   username:any;
@@ -49,6 +50,7 @@ export class LoginComponent {
           localStorage.setItem("token", data.token);
           localStorage.setItem("role", data.role);
           localStorage.setItem("personId", data.id);
+          localStorage.setItem("personEmail", data.email);
           this.router.navigate(['livrets']);
       })
     }

@@ -27,6 +27,19 @@ export class SectionComponent implements OnInit{
   }
   admin:boolean = this.isAdmin();
 
+
+  isCanUpdateVisiblity():boolean{
+    let role = localStorage.getItem("role");
+    if( role == ("ROLE_ADMIN") || role == ("Tuteur") ){
+      console.log("can visibilty " + localStorage.getItem("role"));
+      return true ;
+    }
+      return false;
+  }
+  canUpdateVisiblity:boolean = this.isCanUpdateVisiblity();
+ 
+
+
   selected = 'option2';
   FilledByselected = 'option2';
 
@@ -120,10 +133,6 @@ export class SectionComponent implements OnInit{
   }
 }
 
- 
-
-
-  
   formUpdateFilledBy(){
     this.Ssection.updatePersonType(this.sectionData.id, this.sectionData.personType).subscribe((data:any)=>{
       this.Ssection.getSectionById(this.sectionId).subscribe((data:any)=>{
@@ -133,7 +142,6 @@ export class SectionComponent implements OnInit{
     })
   }
 
-  
 
 isUpdateVisibility = false;
  
@@ -173,6 +181,9 @@ popup = false;
 showPopup(state:any){
   this.popup = state
 }
+
+
+
 
 
 
