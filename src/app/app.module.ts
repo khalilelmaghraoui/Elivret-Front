@@ -7,6 +7,8 @@ import { LivretComponent } from './livret/livret.component';
 import { AddLivretComponent } from './add-livret/add-livret.component';
 import {MatButtonModule, MatIconAnchor} from '@angular/material/button';
 import {matMenuAnimations, MatMenuModule} from '@angular/material/menu';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
 
 import {MatCardModule} from '@angular/material/card';
 import {MatListModule} from '@angular/material/list'
@@ -39,6 +41,9 @@ import { UserLivretComponent } from './livret/user-livret/user-livret.component'
 import { UserViewLivretComponent } from './view-livret/user-view-livret/user-view-livret.component';
 import { LivretsListComponent } from './livrets-list/livrets-list.component';
 
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -48,7 +53,8 @@ import { LivretsListComponent } from './livrets-list/livrets-list.component';
     AddLivretComponent,
     SectionComponent,
     ViewLivretComponent,
-    AddSectionComponent,NavbarComponent, SidebarComponent, SectionQuestionsComponent, LoginComponent,TakeSectionComponent, UserLivretComponent, UserViewLivretComponent,QuestionsComponent,LivretsListComponent
+    AddSectionComponent,NavbarComponent, SidebarComponent, SectionQuestionsComponent, LoginComponent,TakeSectionComponent,
+     UserLivretComponent, UserViewLivretComponent,QuestionsComponent,LivretsListComponent
 
   ],
   imports: [
@@ -56,13 +62,16 @@ import { LivretsListComponent } from './livrets-list/livrets-list.component';
     AppRoutingModule,MatButtonModule,MatMenuModule,MatCardModule,MatListModule,MatSelectModule,
     MatTableModule,HttpClientModule,MatButtonModule,MatInputModule,
     FormsModule,BrowserAnimationsModule,
-    MatSnackBarModule,MatToolbarModule,MatIconModule,ReactiveFormsModule,ReactiveFormsModule
+    MatSnackBarModule,MatToolbarModule,MatIconModule,ReactiveFormsModule,ReactiveFormsModule,
+    MatCheckboxModule,MatRadioModule,MatDialogModule,MatFormFieldModule
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
+    },{
+      provide: MatDialogRef, useValue: {}
     }
   ],
   bootstrap: [AppComponent]

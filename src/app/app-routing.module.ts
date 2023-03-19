@@ -67,6 +67,11 @@ const routes: Routes = [
     path: 'elivret/:id/take',
     component: TakeSectionComponent
   },
+  {
+    path: 'questionary',
+    component: SectionQuestionsComponent
+
+  }
 
 ];
 

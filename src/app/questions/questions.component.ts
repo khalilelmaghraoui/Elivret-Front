@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder } from '@angular/forms';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { QuestionService } from 'src/services/question.service';
 
@@ -12,6 +13,15 @@ export class QuestionsComponent implements OnInit{
 
   showForm1: boolean = false;
   showForm2: boolean = false;
+  responseForm: FormGroup;
+  toppings = this.formBuilder.group({
+    pepperoni: false,
+    extracheese: false,
+    mushroom: false,
+  });
+  public myControl = new FormControl();
+
+  
 
   onFormSelectionChange(event: any) {
     const formSelected = event.value;
@@ -20,6 +30,7 @@ export class QuestionsComponent implements OnInit{
   }
   
   showForm11() {
+    
     this.showForm1 = true;
     this.showForm2 = false;
   }
@@ -32,9 +43,10 @@ export class QuestionsComponent implements OnInit{
 
   questionForm;
   arrayOptions:any;
+  updateOptions2: string[] = [];
+
 
   isDisabled = false;
-
   
 
   id;
@@ -44,7 +56,9 @@ export class QuestionsComponent implements OnInit{
     id:'',
     content:"",
     type:"text",
-    options:[]
+    options:[],
+    answer:""
+
   }
 
   questions=[
@@ -52,45 +66,58 @@ export class QuestionsComponent implements OnInit{
       id:1,
       content:"question 1",
       type:'text',
-      options:[]
+      options:[ {}],
+      answer:""
 
     },{
       id:2,
       content:"question 1",
       type:"text",
-      options:[]
+      options:[
+        {}
+
+      ],
+      answer:""
 
     }
   ];
-
   
-  constructor(private  questionService:QuestionService,private route:ActivatedRoute,private formBuilder: FormBuilder){
+  constructor(private  questionService:QuestionService,private route:ActivatedRoute,
+    private formBuilder: FormBuilder,private dialog: MatDialog,private dialogRef: MatDialogRef<QuestionsComponent>
+    ){
     this.id=this.route.snapshot.params['id'];
     this.title=this.route.snapshot.params['title'];
 
+    this.responseForm = this.formBuilder.group({
+    
+      questions: this.formBuilder.array([
+        { id: "", content: "", type: "", options: [], answer: "" }
+        
+      ])
+     
+    });
+
 
     this.questionForm = this.formBuilder.group({
+      // id:"",
       content: "",
       type:"multichoice",
-      options: this.formBuilder.array([])
+      options: this.formBuilder.array([]),
+      // answer:""
     });
   }
+ 
 
-  ngOnInit() {
-    this.id=this.route.snapshot.params['id'];
 
-    this.questionService.getQuestions(this.id).subscribe((data:any)=>{
-      this.questions=data;
-      console.log(this.questions);
 
-    })
-        this.arrayOptions = [];
 
-    this.addOption();
+
+  get questionss() {
+    return this.responseForm.get('questions') as FormArray;
   }
 
-  onSubmit(questionData:any) {
-    console.log(questionData);
+  onNoClick(): void {
+    this.dialogRef.close();
   }
  
 
@@ -103,61 +130,95 @@ export class QuestionsComponent implements OnInit{
     this.arrayOptions.push(this.questionForm.controls.options.value);
   }
   
+  validQuestion = (email:any) => {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^\S.*\S$/
+        );
+  };
  
   formSubmit(){
+    let validQuestion = this.validQuestion(this.question.content);
+    if(validQuestion){
     this.questionService.addQuestion(this.id,this.question).subscribe((data)=>{
       this.question.content='';
+      this.showForm1 = false;
+      this.showForm2 = false;
       this.questionService.getQuestions(this.id).subscribe((data:any)=>{
          this.questions=data;
         console.log(this.questions);
   
       })
-    })
+    })}
 
-  }    
+  }  
   formSubmit2(formData:any){
     const questionData = {
       content: formData.content,
       type:formData.type="multichoice",
       options: formData.options.map((option: any) => option.option)
     };
+    let validQuestion1 = this.validQuestion(questionData.content);
+    let validQuestion2 = this.validQuestion(questionData.options);
+
+
+
+    if(validQuestion1 && validQuestion2){
     this.questionService.addQuestion(this.id,questionData).subscribe((data)=>{
       this.question.content='';
       this.question.options=[];
+      this.questionForm.reset();
+      this.showForm1 = false;
+      this.showForm2 = false;
+
       this.questionService.getQuestions(this.id).subscribe((data:any)=>{
       this.questions=data;
       console.log(this.questions);
   
       })
-    })
+    })}
 
 
 
   } 
 
-  modifyQuestion(question:any){
 
-    question.content = prompt('Enter new title for question');
-    this.questionService.modifyQuestion(this.id,question.id,question).subscribe((data)=>{
-      console.log(data);
-
-    })
-
-
-  }
 
   showField!: null;
-updateText!: string;
+  updateText!: string;
 showUpdateField(question:any) {
   this.showField = question.id;
   this.updateText = question.content;
+  this.updateOptions2 = [...question.options];
+
 }
 
-updateQuestion(question:any) {
+updateQuestion(question:any,options:any) {
 
   question.content = this.updateText;
+  question.options = options;
+   
   console.log(question.content)
+  console.log(question.options)
+  // console.log(jsonString)
+  this.questionService.modifyQuestion2(this.id,question.id,question).subscribe((data)=>{
+    console.log(data);
+  })
+
+  this.showField = null;
+
+}
+updateQuestion2(question:any) {
+
+  question.content = this.updateText;
+  
+   
+  console.log(question.content)
+  // console.log(jsonString)
   this.questionService.modifyQuestion(this.id,question.id,question.content).subscribe((data)=>{
+    this.showForm1 = false;
+    this.showForm2 = false;
     console.log(data);
   })
 
@@ -176,8 +237,46 @@ deleteQuestion(question:any) {
 
 }
 
-if(){
-  console.log("hello");
+
+onResponseSubmit() {
+
+  for (let question of this.questions) {
+    // if (question.type === 'multiplechoice') {
+    //   // Find the selected option and set it as the answer
+    //   const selectedOption = question.options.find(option => option);
+    //   if (selectedOption) {
+    //     question.answer = selectedOption.option;
+    //   }
+    // }
+    // console.log(this.questions);
+
+    this.questionService.answer(this.id, question.id, question.answer).subscribe((data) => {
+      console.log('Question ' + question.id + ' answered');
+      this.questionService.getQuestions(question.id).subscribe((data:any)=>{
+           console.log(this.questions);
+      
+         })
+    });
+  }
+
+
+
 }
+
+
+
+ngOnInit() {
+  this.id=this.route.snapshot.params['id'];
+
+  this.questionService.getQuestions(this.id).subscribe((data:any)=>{
+    this.questions=data;
+    console.log(this.questions);
+
+  })
+      this.arrayOptions = [];
+
+  this.addOption();
+}
+
 
 }
