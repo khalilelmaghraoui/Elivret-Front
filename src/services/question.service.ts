@@ -31,9 +31,20 @@ export class QuestionService {
 
   }
 
-  public modifyQuestion(sectionId:number,questionId:number,content:any){
+  public modifyQuestion(sectionId:number,questionId:number,content:string){
     return this.http.put(this.BaseUrl+"sections/"+sectionId+"/questions/"+questionId,content)
 
+  }
+  public answer(sectionId:number,questionId:number,answer:string){
+    return this.http.put(this.BaseUrl+"sections/"+sectionId+"/AnswerQuestions/"+questionId,answer)
+
+  }
+  public modifyQuestion2(sectionId:number,questionId:number,question:any){
+    // const requestBody = {
+    //   newContent: content,
+    //   options: options
+    // };
+    return this.http.put(this.BaseUrl+"sections/"+sectionId+"/questionsOptions/"+questionId,question);
   }
 
 
