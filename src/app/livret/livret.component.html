@@ -14,7 +14,7 @@
                                   <th scope="col">livret</th>
                                   <th scope="col">livret management</th>
 
-                                  <th scope="col" *ngIf="admin">Invite</th>
+                                  <th scope="col" *ngIf="canUpdateVisiblity">Invite</th>
                                   <th scope="col">To</th>
                                  
                             
@@ -43,7 +43,7 @@
                                   <button class="btn btn-danger" *ngIf="admin" (click)="deleteLivret(livretData.id)"><i class="far fa-trash-alt">Deletes</i></button>
                                   <button class="btn btn-secondary" *ngIf="admin" (click)="isUpdate(true)"><i class="far fa-trash-alt">update</i></button>
                                   </td>
-                                  <td *ngIf="admin"> 
+                                  <td *ngIf="canUpdateVisiblity"> 
                                     <form (ngSubmit)="inviteForm($event)">
                                       <div>
                                         <input type="hidden" name="index"  value="{{livretData.id}}"/>

@@ -86,7 +86,6 @@ export class LivretsListComponent {
       })
     }else{
       this.livret.getPersonLivrets(this.personId).subscribe((data:any)=>{
-        console.log(data);
         this.elivrets=data;
       })
     }
