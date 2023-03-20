@@ -89,11 +89,10 @@ ngOnInit() {
   this.questionService.getQuestions(this.id).subscribe((data:any)=>{
     this.questions=data;
     console.log(this.questions);
-
+    this.answersCheck();
   })
       this.arrayOptions = [];
 
-      this.answersCheck();
   this.addOption();
 }
   
@@ -168,7 +167,8 @@ ngOnInit() {
       this.questionService.getQuestions(this.id).subscribe((data:any)=>{
          this.questions=data;
         console.log(this.questions);
-  
+        this.answersCheck();
+
       })
     })}
 
@@ -195,7 +195,8 @@ ngOnInit() {
       this.questionService.getQuestions(this.id).subscribe((data:any)=>{
       this.questions=data;
       console.log(this.questions);
-  
+      this.answersCheck();
+
       })
     })}
 
@@ -250,7 +251,7 @@ deleteQuestion(question:any) {
     this.questionService.getQuestions(this.id).subscribe((data:any)=>{
       this.questions=data;
      console.log(this.questions);
-
+     this.answersCheck();
    })
   }) 
   this.showField = null;
@@ -286,23 +287,13 @@ answersCheck(){
 onResponseSubmit() {
   // Lock the form
   for (let question of this.questions) {
-    // if (question.type === 'multiplechoice') {
-    //   // Find the selected option and set it as the answer
-    //   const selectedOption = question.options.find(option => option);
-    //   if (selectedOption) {
-    //     question.answer = selectedOption.option;
-    //   }
-    // }
-    //console.log(this.questions);
-
-   
-
     this.questionService.answer(this.id, question.id, question.answer).subscribe((data) => {
       console.log('Question ' + question.id + ' answered');
       this.questionService.getQuestions(question.id).subscribe((data:any)=>{
            console.log(this.questions);
-           //this.questions = this.questions;
+           this.formLocked = true;
          })
+         this.formLocked = true;
     });
   }
 

@@ -200,13 +200,13 @@
       <div *ngIf="question.options.length > 0">
         <label class="example-margin">options:</label>
         <mat-radio-group [(ngModel)]="question.answer" (change)="onOptionSelected(qIndex, $event.value)">
-          <mat-radio-button *ngFor="let option of question.options; let oIndex=index" class="example-margin" [value]="oIndex">{{option}}</mat-radio-button>
+          <mat-radio-button *ngFor="let option of question.options; let oIndex=index" class="example-margin" [disabled]="formLocked" [checked]="question.options[oIndex] === question.answer" [value]="oIndex">{{option}}</mat-radio-button>
         </mat-radio-group>
       </div>
   
       <!-- Show input if question type is not 'multipleChoice' -->
       <div *ngIf="question.type == 'text'">
-        <input required type="text" name="response" matInput placeholder="Enter your response here" [(ngModel)]="question.answer">
+        <input required type="text" [disabled]="formLocked" name="response{{qIndex}}" matInput placeholder="Enter your response here" [(ngModel)]="question.answer">
       </div>
     </div>
     <div class="col-3 text-center mt15 container">
