@@ -66,7 +66,7 @@ export class QuestionsComponent implements OnInit{
       id:1,
       content:"question 1",
       type:'text',
-      options:[ {}],
+      options:[ ],
       answer:""
 
     },{
@@ -74,13 +74,28 @@ export class QuestionsComponent implements OnInit{
       content:"question 1",
       type:"text",
       options:[
-        {}
+        
 
       ],
       answer:""
 
     }
   ];
+
+
+ngOnInit() {
+  this.id=this.route.snapshot.params['id'];
+
+  this.questionService.getQuestions(this.id).subscribe((data:any)=>{
+    this.questions=data;
+    console.log(this.questions);
+
+  })
+      this.arrayOptions = [];
+
+      this.answersCheck();
+  this.addOption();
+}
   
   constructor(private  questionService:QuestionService,private route:ActivatedRoute,
     private formBuilder: FormBuilder,private dialog: MatDialog,private dialogRef: MatDialogRef<QuestionsComponent>
@@ -88,6 +103,11 @@ export class QuestionsComponent implements OnInit{
     this.id=this.route.snapshot.params['id'];
     this.title=this.route.snapshot.params['title'];
 
+    this.questionService.getQuestions(this.id).subscribe((data:any)=>{
+      this.questions=data;
+      console.log(this.questions);
+  
+    })
     this.responseForm = this.formBuilder.group({
     
       questions: this.formBuilder.array([
@@ -236,10 +256,35 @@ deleteQuestion(question:any) {
   this.showField = null;
 
 }
+onOptionSelected(qIndex: number, oIndex: number) {
+  this.questions[qIndex].answer = this.questions[qIndex].options[oIndex];
+  console.log(this.questions[qIndex]);
+  console.log(`Question ${qIndex} option ${oIndex} selected`);
+}
 
+formLocked = true;
+
+stillquestion = 0;
+
+answersCheck(){
+  for (let question of this.questions) {
+    console.log(question.answer);
+    if(question.answer){
+      this.stillquestion++;
+    }
+  }
+
+  console.log(this.stillquestion);
+
+  if(this.questions.length == this.stillquestion){
+    this.formLocked = true;
+  }else{
+    this.formLocked = false;
+  }
+}
 
 onResponseSubmit() {
-
+  // Lock the form
   for (let question of this.questions) {
     // if (question.type === 'multiplechoice') {
     //   // Find the selected option and set it as the answer
@@ -248,35 +293,27 @@ onResponseSubmit() {
     //     question.answer = selectedOption.option;
     //   }
     // }
-    // console.log(this.questions);
+    //console.log(this.questions);
+
+   
 
     this.questionService.answer(this.id, question.id, question.answer).subscribe((data) => {
       console.log('Question ' + question.id + ' answered');
       this.questionService.getQuestions(question.id).subscribe((data:any)=>{
            console.log(this.questions);
-      
+           //this.questions = this.questions;
          })
     });
   }
 
 
 
+
+
 }
 
 
 
-ngOnInit() {
-  this.id=this.route.snapshot.params['id'];
-
-  this.questionService.getQuestions(this.id).subscribe((data:any)=>{
-    this.questions=data;
-    console.log(this.questions);
-
-  })
-      this.arrayOptions = [];
-
-  this.addOption();
-}
 
 
 }
