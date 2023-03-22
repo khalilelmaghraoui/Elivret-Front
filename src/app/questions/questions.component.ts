@@ -3,6 +3,8 @@ import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { QuestionService } from 'src/services/question.service';
+import { SectionService } from 'src/services/section.service';
+
 
 @Component({
   selector: 'app-questions',
@@ -19,9 +21,18 @@ export class QuestionsComponent implements OnInit{
     extracheese: false,
     mushroom: false,
   });
+
   public myControl = new FormControl();
 
-  
+  section:any;
+
+  isAdmin():boolean{
+    if(localStorage.getItem("role") == "ROLE_ADMIN"){
+      return true ;
+    }
+      return false;
+  }
+  admin:boolean = this.isAdmin();
 
   onFormSelectionChange(event: any) {
     const formSelected = event.value;
@@ -86,22 +97,29 @@ export class QuestionsComponent implements OnInit{
 ngOnInit() {
   this.id=this.route.snapshot.params['id'];
 
+ 
+      this.arrayOptions = [];
+
+  this.addOption();
+  this.Ssection.getSectionById(this.id).subscribe((data:any)=>{
+    this.section = data;
+    console.log(data)
+  })
+
   this.questionService.getQuestions(this.id).subscribe((data:any)=>{
     this.questions=data;
     console.log(this.questions);
     this.answersCheck();
   })
-      this.arrayOptions = [];
-
-  this.addOption();
 }
   
-  constructor(private  questionService:QuestionService,private route:ActivatedRoute,
+  constructor(private Ssection:SectionService, private  questionService:QuestionService,private route:ActivatedRoute,
     private formBuilder: FormBuilder,private dialog: MatDialog,private dialogRef: MatDialogRef<QuestionsComponent>
     ){
     this.id=this.route.snapshot.params['id'];
     this.title=this.route.snapshot.params['title'];
 
+    
     this.questionService.getQuestions(this.id).subscribe((data:any)=>{
       this.questions=data;
       console.log(this.questions);
@@ -275,12 +293,16 @@ answersCheck(){
     }
   }
 
-  console.log(this.stillquestion);
+  console.log(this.section.personType,localStorage.getItem("role"));
 
-  if(this.questions.length == this.stillquestion){
-    this.formLocked = true;
+  if(localStorage.getItem("role") == this.section.personType ){
+    if(this.questions.length != this.stillquestion ){
+      this.formLocked = false;
+    }else{
+      this.formLocked = true;
+    }
   }else{
-    this.formLocked = false;
+    this.formLocked = true;
   }
 }
 
