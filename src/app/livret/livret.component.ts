@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { LivretServiceService } from 'src/services/livret-service.service';
 import { Router } from '@angular/router';
-
+import { MatDialog } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
 @Component({
@@ -49,7 +49,7 @@ export class LivretComponent implements OnInit {
   };
 
 
-  constructor(private livret:LivretServiceService,private route: ActivatedRoute, private router:Router){
+  constructor(private livret:LivretServiceService,private route: ActivatedRoute, private router:Router,private dialog: MatDialog){
     this.elivretId= this.route.snapshot.paramMap.get('id');
   }
 
@@ -60,7 +60,7 @@ export class LivretComponent implements OnInit {
 
     })
   }
-
+  
   deleteLivret(id:any){
     this.livret.deleteLivret(id).subscribe((data:any)=>{
       this.router.navigate(['livrets']);

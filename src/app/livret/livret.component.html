@@ -4,18 +4,22 @@
                <br>
                     <mat-card *ngIf="livretData.id"  class="row text-center container">
                       <button type="button" class="col-2 btn btn-primary" routerLink="/livrets/">« Previous</button>
-                      <h1>Livret details</h1>
+                      <h1 class="det">Livret details</h1>
+                      
+                    </mat-card>
+                    <br>
+                    <mat-card>
                       <div class="">
                         <div class="row w100">
                           <div class="col-8">
                             <table class="table table-bordered">
                               <thead>
                                 <tr>
-                                  <th scope="col">livret</th>
+                                  <th scope="col" >livret</th>
                                   <th scope="col">livret management</th>
 
                                   <th scope="col" *ngIf="admin">Invite</th>
-                                  <th scope="col">To</th>
+                                  <th scope="col">Invited emails</th>
                                  
                             
                                 </tr>
@@ -23,7 +27,7 @@
                               <tbody>
                                 <tr>
                                   <td>
-                                    <div> {{livretData.title}} </div>
+                                    <div class="title"> {{livretData.title}} </div>
                                     <form *ngIf="admin && isUpdateForm"  (ngSubmit)="updateLivret($event)">
                                       <input type="hidden" name="index"  value="{{livretData.id}}"/>
                                         <div>
@@ -37,10 +41,9 @@
 
                                   </td>
                                 
-                                  <td>
+                                  <td class="button-container">
                                   <button type="button" routerLink="/livrets/{{livretData.id}}/sections" class="btn btn-primary"><i class="far fa-eye">sections</i></button>
-                                    <!-- <button type="button" class="btn btn-success"><i class="fas fa-edit">modifier</i></button> -->
-                                  <button class="btn btn-danger" *ngIf="admin" (click)="deleteLivret(livretData.id)"><i class="far fa-trash-alt">Deletes</i></button>
+                                  <!-- <button class="btn btn-danger" *ngIf="admin" (click)="deleteLivret(livretData.id)"><i class="far fa-trash-alt">Deletes</i></button> -->
                                   <button class="btn btn-secondary" *ngIf="admin" (click)="isUpdate(true)"><i class="far fa-trash-alt">update</i></button>
                                   </td>
                                   <td *ngIf="admin"> 
@@ -51,7 +54,7 @@
                                           <input required type="email" name="title" [(ngModel)]="person.email" matInput [email]="true" placeholder="email" >
                                         </mat-form-field> 
                                         <div>
-                                          <mat-form-field class="col-md-8" appearance="fill">
+                                          <mat-form-field class="col-md-0" appearance="fill">
                                             <mat-label>Fill By</mat-label>
                                             <mat-select required name="personType" [(ngModel)]="person.personType" [(value)]="selected">
                                               <mat-option value="Tuteur">Tuteur</mat-option>

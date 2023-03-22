@@ -1,0 +1,26 @@
+.mat-mdc-list-item-icon {
+    color: rgba(0, 0, 0, 0.54);
+  }
+
+  .title {
+    display: inline;
+    display: inline;
+    margin: 14px 40px -38px;
+    color: black;
+  }
+
+  .card {
+    width: fit-content;
+  }
+
+  .deleteclass {
+    margin-top: 4px;
+  }
+  .centered-card {
+    width: 50%; /* or any desired width */
+    margin: auto;
+  }
+
+  .ctitle{
+    margin-right: 90px;
+  }

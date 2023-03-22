@@ -1,0 +1,8 @@
+.button-container button {
+    display: inline-block;
+    margin-right: 10px; /* optional: add some spacing between buttons */
+  }
+
+  .section{
+    margin-top: -40px;
+  }

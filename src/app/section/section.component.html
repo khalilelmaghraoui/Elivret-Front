@@ -1,11 +1,17 @@
 
 
-  <br>
+<br>
   <mat-card *ngIf="sectionData.id && (sectionData.visibility || canUpdateVisiblity)" class="row text-center container">
+    <br>
       <button type="button" class="col-2 btn btn-primary" routerLink="/livrets/{{livret.id}}/sections">« Previous</button>
-      <h1> Section details </h1>
-        <div class="row">
-          <div class="col-md-12">
+      <h1 class="section"> Section details </h1>
+ 
+  </mat-card>
+  <br>
+  <br>
+  <mat-divider></mat-divider>
+  <br>
+  <mat-card>
             <table class="table table-bordered w300">
               <thead>
                 <tr>
@@ -26,10 +32,12 @@
                             <input required type="title" name="title" [(ngModel)]="sectionData.title" matInput placeholder="title" >
                           </mat-form-field> 
                         </div>
-                        <button class="btn btn-secondary"><i class="far fa-trash-alt">submit</i></button>
+                        <button  class="btn btn-secondary"><i class="far fa-trash-alt">submit</i></button>
                     </form>
                     <div>
-                      <button *ngIf="admin && !isUpdateForm" class="btn btn-secondary"  (click)="isUpdateFormButton(true)"><i class="far fa-trash-alt">update</i></button>
+                      
+                      <button mat-stroked-button color="primary"  *ngIf="admin && !isUpdateForm" class="btn col-md-0" color="primary"  (click)="isUpdateFormButton(true)"><i class="far fa-trash-alt">update</i></button>
+
                     </div>
                   </td>
                   <td>
@@ -51,7 +59,7 @@
                     </div>   
                   </form>
                   <div>
-                    <button *ngIf="admin && !isUpdateFillByForm" class="btn btn-secondary"  (click)="isUpdateFillByFormButton(true)"><i class="far fa-trash-alt">update</i></button>
+                    <button mat-stroked-button color="primary" *ngIf="admin && !isUpdateFillByForm" class="btn"  (click)="isUpdateFillByFormButton(true)"><i class="far fa-trash-alt">update</i></button>
                   </div>
                   </td>
                   <td *ngIf="canUpdateVisiblity">
@@ -73,16 +81,17 @@
                       <button class="btn btn-secondary"><i class="far fa-trash-alt">submit</i></button>   
                     </div>   
                   </form>
+                  
                   <div>
-                    <button *ngIf="canUpdateVisiblity && !isUpdateVisibility" class="btn btn-secondary"  (click)="isUpdateVisibilityButton(true)"><i class="far fa-trash-alt">update</i></button>
+                    <button mat-stroked-button color="primary" *ngIf="canUpdateVisiblity && !isUpdateVisibility" class="btn"  (click)="isUpdateVisibilityButton(true)"><i class="far fa-trash-alt">update</i></button>
                   </div>
 
                     
                   </td>
-                  <td>
-                  <button type="button" routerLink="/questions/{{sectionData.id}}/{{sectionData.title}}" class="btn btn-primary w-100"><i class="far fa-eye">Questions</i></button>
+                  <td class="button-container">
+                  <button type="button" routerLink="/questions/{{sectionData.id}}/{{sectionData.title}}" class="btn btn-primary"><i class="far fa-eye">Questions</i></button>
                     <!-- <button type="button" class="btn btn-success"><i class="fas fa-edit">modifier</i></button> -->
-                  <button *ngIf="admin" class="btn btn-danger w-100 mt-15" (click)="deleteSection(sectionData.id)" ><i class="far fa-trash-alt">delete</i></button>
+                  <button *ngIf="admin" class="btn btn-danger" (click)="deleteSection(sectionData.id)" ><i class="far fa-trash-alt">delete</i></button>
                   </td>
                   
 
@@ -90,8 +99,7 @@
                 
               </tbody>
             </table>
-          </div>
-        </div>
+       
     </mat-card>
 
 

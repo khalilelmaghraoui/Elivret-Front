@@ -1,13 +1,8 @@
     <br>
     <mat-card class="row text-center container">
+      <br>  
       <button type="button" class="col-2 btn btn-primary" routerLink="/livrets/{{livret.id}}">« Previous</button>
-      <h1>List of sections </h1>
-      <ul *ngFor="let s of sections;let indexOfelement=index;">
-          <li *ngIf="s.id && (s.visibility || canUpdateVisiblity)">
-            <a  routerLink="/livrets/{{livret.id}}/sections/{{s.id}}"><strong>{{s.title}}</strong> ( <strong>{{s.personType}}</strong> ) </a>
-          </li>
-          
-      </ul>
+      <br>
     </mat-card>
  <br>
 
@@ -37,6 +32,7 @@
                                     <div class="container col-md-8">
                                         <button mat-raised-button  color="primary"> add section </button>
                                     </div>  
+                                    <br>
                                   </form>
                               </div>
                           </div>
@@ -87,3 +83,16 @@
                       </div>
 
                        -->
+<mat-card class="row container">
+                       <h1>List of sections </h1>
+      <mat-list *ngFor="let s of sections;let indexOfelement=index;" >
+               
+        <mat-list-item *ngIf="s.id && (s.visibility || canUpdateVisiblity)">
+          <mat-icon matListItemIcon>folder</mat-icon>
+          <button  routerLink="/livrets/{{livret.id}}/sections/{{s.id}}" class="btn btn-outline-primary ctitle"><strong>{{s.title}}</strong> ( <strong>{{s.personType}}</strong> )</button>
+          <!-- <button mat-icon-button  *ngIf="admin" color="warn" aria-label="Delete" >
+            <mat-icon >delete</mat-icon>
+          </button> -->
+        </mat-list-item>
+      </mat-list>
+      </mat-card>
