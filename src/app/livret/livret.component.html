@@ -46,7 +46,7 @@
                                   <!-- <button class="btn btn-danger" *ngIf="admin" (click)="deleteLivret(livretData.id)"><i class="far fa-trash-alt">Deletes</i></button> -->
                                   <button class="btn btn-secondary" *ngIf="admin" (click)="isUpdate(true)"><i class="far fa-trash-alt">update</i></button>
                                   </td>
-                                  <td *ngIf="admin"> 
+                                  <td *ngIf="canUpdateVisiblity"> 
                                     <form (ngSubmit)="inviteForm($event)">
                                       <div>
                                         <input type="hidden" name="index"  value="{{livretData.id}}"/>

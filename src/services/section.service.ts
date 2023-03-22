@@ -23,7 +23,9 @@ export class SectionService implements OnInit{
    
 
    public section(sid:any){
-    return this.http.get(this.BaseUrl+sid+"/sections");
+    let role = localStorage.getItem("role");
+    let b = { "role": role };
+    return this.http.get(this.BaseUrl + sid + "/sections?role="+role);
    }
 
    public getSectionById(sid:any){

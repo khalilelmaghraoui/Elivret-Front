@@ -31,6 +31,16 @@ export class LivretComponent implements OnInit {
   }
   admin:boolean = this.isAdmin();
 
+  isCanUpdateVisiblity():boolean{
+    let role = localStorage.getItem("role");
+    if( role == ("ROLE_ADMIN") || role == ("Tuteur") ){
+      console.log("can visibilty " + localStorage.getItem("role"));
+      return true ;
+    }
+      return false;
+  }
+  canUpdateVisiblity:boolean = this.isCanUpdateVisiblity();
+
   elivret={
     id:'',
     title: '',

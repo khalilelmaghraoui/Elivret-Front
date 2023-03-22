@@ -3,6 +3,8 @@ import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { QuestionService } from 'src/services/question.service';
+import { SectionService } from 'src/services/section.service';
+
 
 @Component({
   selector: 'app-questions',
@@ -19,9 +21,18 @@ export class QuestionsComponent implements OnInit{
     extracheese: false,
     mushroom: false,
   });
+
   public myControl = new FormControl();
 
-  
+  section:any;
+
+  isAdmin():boolean{
+    if(localStorage.getItem("role") == "ROLE_ADMIN"){
+      return true ;
+    }
+      return false;
+  }
+  admin:boolean = this.isAdmin();
 
   onFormSelectionChange(event: any) {
     const formSelected = event.value;
@@ -66,7 +77,7 @@ export class QuestionsComponent implements OnInit{
       id:1,
       content:"question 1",
       type:'text',
-      options:[ {}],
+      options:[ ],
       answer:""
 
     },{
@@ -74,20 +85,46 @@ export class QuestionsComponent implements OnInit{
       content:"question 1",
       type:"text",
       options:[
-        {}
+        
 
       ],
       answer:""
 
     }
   ];
+
+
+ngOnInit() {
+  this.id=this.route.snapshot.params['id'];
+
+ 
+      this.arrayOptions = [];
+
+  this.addOption();
+  this.Ssection.getSectionById(this.id).subscribe((data:any)=>{
+    this.section = data;
+    console.log(data)
+  })
+
+  this.questionService.getQuestions(this.id).subscribe((data:any)=>{
+    this.questions=data;
+    console.log(this.questions);
+    this.answersCheck();
+  })
+}
   
-  constructor(private  questionService:QuestionService,private route:ActivatedRoute,
+  constructor(private Ssection:SectionService, private  questionService:QuestionService,private route:ActivatedRoute,
     private formBuilder: FormBuilder,private dialog: MatDialog,private dialogRef: MatDialogRef<QuestionsComponent>
     ){
     this.id=this.route.snapshot.params['id'];
     this.title=this.route.snapshot.params['title'];
 
+    
+    this.questionService.getQuestions(this.id).subscribe((data:any)=>{
+      this.questions=data;
+      console.log(this.questions);
+  
+    })
     this.responseForm = this.formBuilder.group({
     
       questions: this.formBuilder.array([
@@ -148,7 +185,8 @@ export class QuestionsComponent implements OnInit{
       this.questionService.getQuestions(this.id).subscribe((data:any)=>{
          this.questions=data;
         console.log(this.questions);
-  
+        this.answersCheck();
+
       })
     })}
 
@@ -175,7 +213,8 @@ export class QuestionsComponent implements OnInit{
       this.questionService.getQuestions(this.id).subscribe((data:any)=>{
       this.questions=data;
       console.log(this.questions);
-  
+      this.answersCheck();
+
       })
     })}
 
@@ -230,53 +269,64 @@ deleteQuestion(question:any) {
     this.questionService.getQuestions(this.id).subscribe((data:any)=>{
       this.questions=data;
      console.log(this.questions);
-
+     this.answersCheck();
    })
   }) 
   this.showField = null;
 
 }
+onOptionSelected(qIndex: number, oIndex: number) {
+  this.questions[qIndex].answer = this.questions[qIndex].options[oIndex];
+  console.log(this.questions[qIndex]);
+  console.log(`Question ${qIndex} option ${oIndex} selected`);
+}
 
+formLocked = true;
+
+stillquestion = 0;
+
+answersCheck(){
+  for (let question of this.questions) {
+    console.log(question.answer);
+    if(question.answer){
+      this.stillquestion++;
+    }
+  }
+
+  console.log(this.section.personType,localStorage.getItem("role"));
+
+  if(localStorage.getItem("role") == this.section.personType ){
+    if(this.questions.length != this.stillquestion ){
+      this.formLocked = false;
+    }else{
+      this.formLocked = true;
+    }
+  }else{
+    this.formLocked = true;
+  }
+}
 
 onResponseSubmit() {
-
+  // Lock the form
   for (let question of this.questions) {
-    // if (question.type === 'multiplechoice') {
-    //   // Find the selected option and set it as the answer
-    //   const selectedOption = question.options.find(option => option);
-    //   if (selectedOption) {
-    //     question.answer = selectedOption.option;
-    //   }
-    // }
-    // console.log(this.questions);
-
     this.questionService.answer(this.id, question.id, question.answer).subscribe((data) => {
       console.log('Question ' + question.id + ' answered');
       this.questionService.getQuestions(question.id).subscribe((data:any)=>{
            console.log(this.questions);
-      
+           this.formLocked = true;
          })
+         this.formLocked = true;
     });
   }
 
 
 
+
+
 }
 
 
 
-ngOnInit() {
-  this.id=this.route.snapshot.params['id'];
-
-  this.questionService.getQuestions(this.id).subscribe((data:any)=>{
-    this.questions=data;
-    console.log(this.questions);
-
-  })
-      this.arrayOptions = [];
-
-  this.addOption();
-}
 
 
 }
