@@ -1,90 +1,156 @@
-
-<mat-card>
-
-    <br><br>
-                 <form (ngSubmit)="formSubmit()">
-                     <mat-form-field class="w100" appearance="outline">
-                         <label>title</label>
-                         <input required type="text" name="content" matInput placeholder="enter here" 
-                         [(ngModel)]="question.content">
-                         
-                       </mat-form-field>  
-                       <div class="col-3 text-center mt15">
-                         <button mat-raised-button  color="primary"> add question</button>
-                     </div>
-                 
-                     
-                 </form>
-                 
-    
-     
-    
- </mat-card>
-
- <br>
- <mat-divider></mat-divider>
- <mat-card>
-    <div class="container">
-      <div class="row">
-        <div class="col-8">
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th scope="col">question</th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody *ngFor="let c of questions">
-              <tr>
-                <td ><div *ngIf="showField != c.id">{{c.content}} </div><div *ngIf="showField === c.id">
-                  <!-- <input [(ngModel)]="updateText" placeholder="{{c.content}}"> -->
-                  
-                    <mat-form-field class="example-full-width">
-                      <input matInput [(ngModel)]="updateText" placeholder="{{c.content}}" >
-                    </mat-form-field>
-                  <button  mat-button (click)="updateQuestion(c)">Save</button> </div></td>
-                
-                
-                
-                <td>
-                  <button class="btn btn-primary" (click)="showUpdateField(c)"><i class="far fa-trash-alt">modify</i></button>
-                  <button class="btn btn-danger"(click)="deleteQuestion(c)"><i class="far fa-trash-alt">Delete</i></button>
+<div class="adminSection" *ngIf="admin">
+  <h2># Add questions</h2>
+    <br>
+    <mat-card>
+      <button mat-button (click)="showForm11()">simple question</button>
+      <button mat-button (click)="showForm22()">options question</button>
+    </mat-card>
 
 
-                </td>
-              
-              </tr>
-              
-            </tbody>
-          </table>
+    <mat-card *ngIf="showForm1">
+
+        <br><br>
+                    <form (ngSubmit)="formSubmit()">
+                        <mat-form-field class="w100 container" appearance="outline">
+                            <label>title</label>
+                            <input required type="text" name="content" matInput placeholder="enter here" 
+                            [(ngModel)]="question.content">
+                            
+                          </mat-form-field>  
+                          <div class="col-3 text-center mt15 container">
+                            <button mat-raised-button  color="primary"> save question</button>
+                        </div>
+                        <br>
+                    
+                        
+                    </form>
+                    
+        
+        
+        
+    </mat-card>
+    <mat-card *ngIf="showForm2">
+      <form [formGroup]="questionForm" (ngSubmit)="formSubmit2(questionForm.value)">
+        <div>
+        
+          <br />
+          <div class="col-8">
+          <mat-form-field class="w100 container" appearance="outline">
+            <label>Question</label>
+            <input class="form-control" id="content" type="text"placeholder="Question"  matInput formControlName="content">
+          </mat-form-field>
         </div>
-      </div>
-    </div></mat-card>
+      <div class="col-md-6">
+          <div formArrayName="options">
+            <div *ngFor="let test of arrayOptions; let i = index">
+              <div class="mx-4" [formGroupName]="i">
+                <label>response :  {{i+1}}</label>
+                <input class="form-control" id="option" type="text" placeholder="option"  formControlName="option">
+                  </div>
+                </div>
+              </div> </div>
+              <div class="col-md-4">
+            <button type="button" class="btn-block-option text-primary" mat-button color="primary" (click)="addOption()">
+              <i class="fa fa-plus" aria-hidden="true"></i>Add new response
+            </button>
+          </div>
+        
+          </div>
+        
+          <div class="col-3 text-center mt15 container">
+            <button mat-raised-button  color="primary"> add question</button>
+        </div>
+        <br>
+      </form>
+    </mat-card>
+
+    <br>
+    <mat-divider></mat-divider>
+    <mat-card>
+        <div class="container">
+          <div class="row">
+            <div class="">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">question</th>
+                    <th scope="col">question type</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let c of questions">
+                  <tr>
+                    <td ><div *ngIf="showField != c.id">{{c.content}}<td><div>
+                      <mat-form-field *ngIf="c.options.length > 0" class="col-md-8" appearance="fill">
+                        <mat-label>responses</mat-label>
+                        <mat-select required name="personType">
+                          <mat-option *ngFor="let option of c.options" value="option">{{ option }}</mat-option>
+                        </mat-select>
+                        
+                      </mat-form-field>
+                    </div> 
+                  </td> </div><div *ngIf="showField === c.id">
+                      <!-- <input [(ngModel)]="updateText" placeholder="{{c.content}}"> -->
+                      
+                        <mat-form-field class="example-full-width">
+                          <input matInput [(ngModel)]="updateText" placeholder="{{c.content}}" >
+                          
+                        </mat-form-field>
+                        <div *ngFor="let option of c.options; let i = index">
+                          <mat-form-field class="col-md-8" appearance="fill">
+                            <input matInput [(ngModel)]="updateOptions2[i]" placeholder="Option {{ i + 1 }}" >
+                          </mat-form-field>
+                        </div>
+                        <button *ngIf="c.options.length > 0"  mat-button color="primary" (click)="updateQuestion(c, updateOptions2)">Save</button>
+                      <button *ngIf="c.options.length===0 "  mat-button (click)="updateQuestion2(c)">Save</button> 
+                    </div>  </td>
+
+                    
+                    <td>{{c.type}} </td>
+                    
+                    <td>
+                      <button class="btn btn-primary" (click)="showUpdateField(c)"><i class="far fa-trash-alt">modify</i></button>
+
+                      <button class="btn btn-danger"(click)="deleteQuestion(c)"><i class="far fa-trash-alt">Delete</i></button>
 
 
+                    </td>
+                  
+                  </tr>
+                  
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div></mat-card>
+
+    <br>
+</div>
+
+<div class="section" *ngIf="!admin">
+<h2># Fill your Livret</h2>
+<br>
 <mat-card>
-  <form [formGroup]="questionForm" (ngSubmit)="formSubmit()">
-    <div>
-      <label>question :</label>
-      <br />
-      <input class="form-control" id="content" type="text" formControlName="content">
-      <br />
-      <label>Options</label>
-      <div formArrayName="options">
-        <div *ngFor="let test of arrayOptions; let i = index">
-          <div class=mx-4 [formGroupName]="i">
-            <label>option {{i+1}}</label>
-            <input class="form-control" id="option" type="text" formControlName="option">
-              </div>
-         
-        <button type="button" class="btn-block-option text-primary" (click)="addOption()">
-          <i class="fa fa-plus" aria-hidden="true"></i>Add option
-        </button>
+  <form>
+    <div *ngFor="let question of questions; let qIndex=index">
+      <label>{{ question.content }}</label>
+  
+      <!-- Show options if question type is 'multipleChoice' -->
+      <div *ngIf="question.options.length > 0">
+        <label class="example-margin">options:</label>
+        <mat-radio-group [(ngModel)]="question.answer" (change)="onOptionSelected(qIndex, $event.value)">
+          <mat-radio-button *ngFor="let option of question.options; let oIndex=index" class="example-margin" [disabled]="formLocked" [checked]="question.options[oIndex] === question.answer" [value]="oIndex">{{option}}</mat-radio-button>
+        </mat-radio-group>
+      </div>
+  
+      <!-- Show input if question type is not 'multipleChoice' -->
+      <div *ngIf="question.type == 'text'">
+        <input required type="text" [disabled]="formLocked" name="response{{qIndex}}" matInput placeholder="Enter your response here" [(ngModel)]="question.answer">
       </div>
     </div>
-      </div>
-      <div class="block-content block-content-full block-content-sm bg-body-light font-size-sm">
-        <button class="btn btn-primary" type="submit">Add</button>
-      </div>
+    <div class="col-3 text-center mt15 container">
+      <button mat-raised-button color="primary" type="submit" [disabled]="formLocked" (click)="onResponseSubmit()">Submit Responses</button>
+    </div>
   </form>
 </mat-card>
+</div>

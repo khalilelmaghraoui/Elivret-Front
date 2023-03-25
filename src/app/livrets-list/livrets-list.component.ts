@@ -86,7 +86,6 @@ export class LivretsListComponent {
       })
     }else{
       this.livret.getPersonLivrets(this.personId).subscribe((data:any)=>{
-        console.log(data);
         this.elivrets=data;
       })
     }
@@ -109,14 +108,15 @@ export class LivretsListComponent {
     })
   }
   formSubmit(){
-    this.livret.addLivret(this.elivret).subscribe((data)=>{
-      this.elivret.title='';
-      this.livret.livrets().subscribe((data:any)=>{
-        this.elivrets=data;
-  
+    if(this.elivret.title){
+      this.livret.addLivret(this.elivret).subscribe((data)=>{
+        this.elivret.title='';
+        this.livret.livrets().subscribe((data:any)=>{
+          this.elivrets=data;
+    
+        })
       })
-    })
-
+    }
   }
 
   person = {

@@ -3,7 +3,7 @@
                         <div mat-subheader>questions of {{title}}</div>
                         
                       </mat-card>
-                      <br>
+                      <br>  
                       <mat-divider></mat-divider>
 
 
@@ -21,9 +21,9 @@
                               </div>
                             </div>
                             <br>
-                            <button type="button" class="btn-block-option text-primary offset-3" (click)="addQuestion()">Add Question</button>
+                            <!-- <button type="button" class="btn-block-option text-primary offset-3" (click)="addQuestion()">Add Question</button>
                             <button type="button" class="btn-block-option text-primary" (click)="submitQuestionsForm()">Submit Quiz</button>
-                            <button type="button" (click)="quizForm.reset()">Reset</button>
+                            <button type="button" (click)="quizForm.reset()">Reset</button> -->
 
                           </form>
 
@@ -47,7 +47,7 @@
                               <button (click)="deleteQuestion2(question.id)">Delete</button>
 
                             </div>
-                            <button >Submit</button>
+                            <!-- <button >Submit</button> -->
                           </form>
                           
                         </mat-card>
@@ -59,25 +59,23 @@
                             <div>
                               <label>question:</label>
                               <br />
-                              <input class="form-control" id="description" type="text" formControlName="description">
                               <br />
-                              <label>Options : </label>
                               <div formArrayName="options">
                                 <div *ngFor="let test of arrayOptions; let i = index">
                                   <div class=mx-4 [formGroupName]="i">
-                                    <label>option {{i}}</label>
+                                    <!-- <label>option {{i}}</label>
                                     <input class="form-control" id="response" type="text" formControlName="response">
-                                    
+                                     -->
                                       </div>
                                   </div>
                                 </div>
-                                <button type="button" class="btn-block-option text-primary" (click)="addOption()">
+                                <!-- <button type="button" class="btn-block-option text-primary" (click)="addOption()">
                                   <i class="fa fa-plus" aria-hidden="true"></i>Add option
-                                </button>
+                                </button> -->
                               </div>
-                              <div class="block-content block-content-full block-content-sm bg-body-light font-size-sm">
+                              <!-- <div class="block-content block-content-full block-content-sm bg-body-light font-size-sm">
                                 <button class="btn btn-primary" type="submit">Add</button>
-                              </div>
+                              </div> -->
                           </form>
                         </mat-card>
                 

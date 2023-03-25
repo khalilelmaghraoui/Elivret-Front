@@ -17,11 +17,30 @@ export class LoginComponent {
   data={
     token:'',
     role:'',
-    id:''
+    id:'',
+    email:''
   }
 
-  constructor(private authService:AuthService,private route:ActivatedRoute, private router:Router){
+  username:any;
+  password:any;
+
+
+  ngOnInit(): void {
+    this.route.queryParams.subscribe((params) => {
+      this.username = params['username'];
+      this.password = params['password'];
+      if(this.username && this.password){
+        this.loginDetails.userName = this.username;
+        this.loginDetails.password = this.password;
+        this.loginForm()
+      }
+    });
   }
+  constructor(private authService:AuthService,private route:ActivatedRoute, private router:Router){
+      
+    
+  }
+
 
   loginForm(){
     if(this.loginDetails.userName && this.loginDetails.password){
@@ -31,6 +50,7 @@ export class LoginComponent {
           localStorage.setItem("token", data.token);
           localStorage.setItem("role", data.role);
           localStorage.setItem("personId", data.id);
+          localStorage.setItem("personEmail", data.email);
           this.router.navigate(['livrets']);
       })
     }

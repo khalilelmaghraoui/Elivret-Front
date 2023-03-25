@@ -24,9 +24,11 @@ export class AddLivretComponent implements OnInit {
 
 
   formSubmit(){
-    this.Selivret.addLivret(this.elivret).subscribe((data)=>{
-      this.elivret.title='';
-    })
+    if(this.elivret.title){
+      this.Selivret.addLivret(this.elivret).subscribe((data)=>{
+        this.elivret.title='';
+      })
+    }
 
   }
 

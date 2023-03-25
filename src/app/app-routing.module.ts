@@ -20,6 +20,8 @@ const routes: Routes = [
     pathMatch:'full'
   
   },
+    { path: 'login/:username/:password',
+    component: LoginComponent },
   {
     path: 'livrets/:id',
     component: LivretComponent,
@@ -36,7 +38,6 @@ const routes: Routes = [
   {
     path: 'addLivrets',
     component: AddLivretComponent,
-
   }
   ,
   {
@@ -66,6 +67,11 @@ const routes: Routes = [
     path: 'elivret/:id/take',
     component: TakeSectionComponent
   },
+  {
+    path: 'questionary',
+    component: SectionQuestionsComponent
+
+  }
 
 ];
 
