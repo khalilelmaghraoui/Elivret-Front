@@ -129,6 +129,7 @@
 
 <div class="section" *ngIf="!admin">
 <h2># Fill your Livret</h2>
+
 <br>
 <mat-card>
   <form>
@@ -145,12 +146,30 @@
   
       <!-- Show input if question type is not 'multipleChoice' -->
       <div *ngIf="question.type == 'text'">
-        <input required type="text" [disabled]="formLocked" name="response{{qIndex}}" matInput placeholder="Enter your response here" [(ngModel)]="question.answer">
+        <input type="text" [disabled]="formLocked" name="response{{qIndex}}"  required matInput placeholder="Enter your response here" [(ngModel)]="question.answer">
       </div>
     </div>
     <div class="col-3 text-center mt15 container">
       <button mat-raised-button color="primary" type="submit" [disabled]="formLocked" (click)="onResponseSubmit()">Submit Responses</button>
     </div>
   </form>
+
+<br>
+
+  <div *ngIf="successMessage" class="alert alert-success " role="alert">
+    <h4 class="alert-heading">Well done!</h4>
+    <p>{{successMessage}}</p>
+  </div> 
+  <div *ngIf="alreadSentMessage" class="alert alert-success " role="alert">
+    <h4 class="alert-heading">Thank you !</h4>
+    <p>{{alreadSentMessage}}</p>
+  </div>
+  <div *ngIf="wrongRoleMessage" class="alert alert-warning" role="alert">
+    {{wrongRoleMessage}}
+  </div>
+  <div *ngIf="fillFormMessage" class="alert alert-danger" role="alert">
+    {{fillFormMessage}}
+  </div>
+
 </mat-card>
 </div>

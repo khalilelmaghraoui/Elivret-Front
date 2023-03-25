@@ -300,28 +300,44 @@ answersCheck(){
       this.formLocked = false;
     }else{
       this.formLocked = true;
+      this.alreadSentMessage = 'This from is completed !'
     }
   }else{
     this.formLocked = true;
+    this.wrongRoleMessage = 'Info: You are not supposed to answer to this form but you can check the responses !'
   }
 }
 
+fillFormMessage = '';
+successMessage = '';
+wrongRoleMessage='';
+alreadSentMessage='';
+
 onResponseSubmit() {
-  // Lock the form
+  let nmbrofresponses = 0;
   for (let question of this.questions) {
-    this.questionService.answer(this.id, question.id, question.answer).subscribe((data) => {
-      console.log('Question ' + question.id + ' answered');
-      this.questionService.getQuestions(question.id).subscribe((data:any)=>{
-           console.log(this.questions);
-           this.formLocked = true;
-         })
-         this.formLocked = true;
-    });
+    if(question.answer){
+      nmbrofresponses++;
+    }
   }
 
-
-
-
+  if(nmbrofresponses == this.questions.length){
+    // Lock the form
+    for (let question of this.questions) {
+      this.questionService.answer(this.id, question.id, question.answer).subscribe((data) => {
+        console.log('Question ' + question.id + ' answered');
+        this.questionService.getQuestions(question.id).subscribe((data:any)=>{
+            console.log(this.questions);
+            this.formLocked = true;
+          })
+          this.formLocked = true;
+          this.fillFormMessage = '';
+          this.successMessage = 'Thank you for your responses !';
+      });
+    }
+  }else{
+    this.fillFormMessage = "Please complete the form !";
+  }
 
 }
 

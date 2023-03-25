@@ -28,3 +28,15 @@
   .example-margin {
     margin: 0 10px;
   }
+
+  .fillFormMessage{
+    color: red;
+  }
+
+  .successMessage{
+    color: green;
+  }
+
+  .mat-card{
+    
+  }

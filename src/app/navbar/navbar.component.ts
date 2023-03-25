@@ -9,6 +9,19 @@ import { AuthService } from 'src/services/auth.service';
 export class NavbarComponent {
   constructor(private auth:AuthService){}
 
+  email:any;
+  role: any;
+
+  ngOnInit() {
+    this.email = localStorage.getItem("personEmail");
+
+    if(localStorage.getItem("role") == 'ROLE_ADMIN'){
+      this.role = "Admin"
+    }else{
+      this.role = localStorage.getItem("role")
+    }
+  }
+
   logout(){
     this.auth.logout();
   }
