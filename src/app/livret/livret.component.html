@@ -8,7 +8,7 @@
                       
                     </mat-card>
                     <br>
-                    <mat-card>
+                    <mat-card style="background-color:  rgba(255, 102, 0, 0.038);">
                       <div class="">
                         <div class="row w100">
                           <div class="col-8">
@@ -26,11 +26,11 @@
                               </thead>
                               <tbody>
                                 <tr>
-                                  <td>
-                                    <div class="title"> {{livretData.title}} </div>
+                                  <td >
+                                    <div class="title inpt"> {{livretData.title}} </div>
                                     <form *ngIf="admin && isUpdateForm"  (ngSubmit)="updateLivret($event)">
                                       <input type="hidden" name="index"  value="{{livretData.id}}"/>
-                                        <div>
+                                        <div >
                                           <mat-form-field class="w70" appearance="outline">
                                             <input required type="title" name="title" [(ngModel)]="livretData.title" matInput placeholder="title" >
                                           </mat-form-field> 
@@ -46,15 +46,15 @@
                                   <!-- <button class="btn btn-danger" *ngIf="admin" (click)="deleteLivret(livretData.id)"><i class="far fa-trash-alt">Deletes</i></button> -->
                                   <button class="btn btn-secondary" *ngIf="admin" (click)="isUpdate(true)"><i class="far fa-trash-alt">update</i></button>
                                   </td>
-                                  <td *ngIf="canUpdateVisiblity"> 
+                                  <td  *ngIf="canUpdateVisiblity"> 
                                     <form (ngSubmit)="inviteForm($event)">
-                                      <div>
+                                      <div class="tdtd">
                                         <input type="hidden" name="index"  value="{{livretData.id}}"/>
-                                        <mat-form-field class="w70" appearance="outline">
+                                        <mat-form-field class="w70 col-12" appearance="outline">
                                           <input required type="email" name="title" [(ngModel)]="person.email" matInput [email]="true" placeholder="email" >
                                         </mat-form-field> 
                                         <div>
-                                          <mat-form-field class="col-md-0" appearance="fill">
+                                          <mat-form-field class="col-12" appearance="fill">
                                             <mat-label>Fill By</mat-label>
                                             <mat-select required name="personType" [(ngModel)]="person.personType" [(value)]="selected">
                                               <mat-option value="Tuteur">Tuteur</mat-option>
@@ -72,11 +72,18 @@
                                   </form>
 
                                   </td>
-                                  <td>
-                                      <ul>
-                                        <li *ngFor="let p of livretData.persons;let indexOfelement=index;">
-                                          <strong>{{p.email}}</strong>: <span>{{p.personType}}</span></li>
-                                      </ul>
+                                  <td class="mail">
+                                      
+                                        
+                                          <mat-chip-listbox class="mat-mdc-chip-set-stacked" aria-label="Color">
+                                            <mat-chip-option *ngFor="let p of livretData.persons;let indexOfelement=index;">
+                                              <strong>{{p.email}} : {{p.personType}} </strong>
+                                            </mat-chip-option>
+                                            
+                                           </mat-chip-listbox>
+                                         
+                                          
+                                     
                                   </td>
                                 </tr>
                                 

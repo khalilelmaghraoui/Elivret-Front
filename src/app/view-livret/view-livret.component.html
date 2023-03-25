@@ -1,12 +1,12 @@
     <br>
-    <mat-card class="row text-center container">
+    <mat-card class="row text-center container" style="background-color: rgba(196, 196, 196, 0.126) ;">
       <br>  
       <button type="button" class="col-2 btn btn-primary" routerLink="/livrets/{{livret.id}}">« Previous</button>
       <br>
     </mat-card>
  <br>
 
-                    <mat-card *ngIf="admin" class="row text-center container">
+                    <mat-card *ngIf="admin" style="background-color:  rgba(255, 102, 0, 0.038);" class="row text-center container">
                       <h1>Add new Section</h1>
                       <div class="bootstrap-wrapper">
                           <div class="row text-center">
@@ -83,7 +83,8 @@
                       </div>
 
                        -->
-<mat-card class="row container">
+<mat-card style="background-color:    rgba(255, 102, 0, 0.038) ;" class="row container">
+  <br>
                        <h1>List of sections </h1>
       <mat-list *ngFor="let s of sections;let indexOfelement=index;" >
                
@@ -96,3 +97,5 @@
         </mat-list-item>
       </mat-list>
       </mat-card>
+
+      <br>

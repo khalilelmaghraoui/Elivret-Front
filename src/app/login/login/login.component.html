@@ -1,35 +1,42 @@
 <br>
 <br>
-<mat-card>
+<mat-card class="body outer-card">
 
-  <div class="bootstrap-wrapper">
+  <!-- <div class="bootstrap-wrapper">
     <div class="container">
         <div class="row">
-            <div class="col-md-4 offset-md-3">
+            <div class="col-md-4 offset-3"> -->
                 <div class="container text-center">
                     <img src="../../../assets/6681204.png" alt="" class="img">
                 </div>
-                <h1 class="text-center"> login </h1>
-                <mat-card>
+                <h1 class="text-center"> Aix-Marseille University : Authentication </h1>
+                <mat-card class="inner-card example-card">
                     <mat-card-header>
-                      <mat-card-title>Login</mat-card-title>
                     </mat-card-header>
                     <mat-card-content>
-                      <form (ngSubmit)="loginForm()">
+                      <form (ngSubmit)="loginForm()" style="display: flex; flex-direction: column; align-items: center;">
                         <mat-form-field>
-                          <input matInput type="text" placeholder="Username" name="userName" [(ngModel)]="loginDetails.userName" id="username">
+                          <label>UserName</label>
+                          <input matInput type="text" style="display: flex; justify-content: center; align-items: center; " placeholder="" name="userName" [(ngModel)]="loginDetails.userName" id="username">
                         </mat-form-field>
                         <mat-form-field>
-                          <input matInput type="password" placeholder="Password" name="password" [(ngModel)]="loginDetails.password" id="password">
+                          <label>Password</label>
+                          <input matInput type="password" class="col-md-3" placeholder="" name="password" [(ngModel)]="loginDetails.password" id="password">
                         </mat-form-field>
-                        <button mat-raised-button color="primary" type="submit">Submit</button>
+                        <mat-card-actions>                        <button mat-raised-button color="primary" type="submit">Login</button>
+                        </mat-card-actions>
                       </form>
                     </mat-card-content>
+                    <br><br><br>
+                    <mat-divider></mat-divider>
+                   <img src="../../../assets/logo_amu.png">  
                   </mat-card>
 
-            </div>
+            <!-- </div>
         </div>
     </div>
-  </div>
+  </div> -->
+
+  <br><br><br><br><br>
 
 </mat-card>

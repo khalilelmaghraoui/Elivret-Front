@@ -45,6 +45,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { DeleteConfirmationDialogComponent } from './livrets-list/delete-confirmation-dialog/delete-confirmation-dialog.component';
+import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,7 @@ import { DeleteConfirmationDialogComponent } from './livrets-list/delete-confirm
     MatTableModule,HttpClientModule,MatButtonModule,MatInputModule,
     FormsModule,BrowserAnimationsModule,
     MatSnackBarModule,MatToolbarModule,MatIconModule,ReactiveFormsModule,ReactiveFormsModule,
-    MatCheckboxModule,MatRadioModule,MatDialogModule,MatFormFieldModule
+    MatCheckboxModule,MatRadioModule,MatDialogModule,MatFormFieldModule,MatChipsModule
   ],
   providers: [
     {

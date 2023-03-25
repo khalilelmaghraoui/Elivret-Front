@@ -1,3 +1,24 @@
 .img{
     width: 50px;
 }
+.body {
+    background-image: url("../../../assets/bg_amu.png");
+    background-size: cover;
+  }
+  
+.card{
+    width: 434px;
+    height: 409px;
+}
+
+.outer-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Add any other styles you want for the outer card here */
+  }
+
+  .example-card {
+    max-width: 400px;
+  }
+  
