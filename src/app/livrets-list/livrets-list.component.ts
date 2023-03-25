@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { LivretServiceService } from 'src/services/livret-service.service';
+import { DeleteConfirmationDialogComponent } from './delete-confirmation-dialog/delete-confirmation-dialog.component';
+import {MatButtonModule} from '@angular/material/button';
 
 @Component({
   selector: 'app-livrets-list',
@@ -71,7 +74,7 @@ export class LivretsListComponent {
 
   personId:any;
 
-  constructor(private livret:LivretServiceService,private route: ActivatedRoute){
+  constructor(private livret:LivretServiceService,private route: ActivatedRoute,private dialog: MatDialog){
     // this.LId=this.route.snapshot.paramMap.get('id');
     this.personId = localStorage.getItem("personId");
 
@@ -95,7 +98,17 @@ export class LivretsListComponent {
     this.LId= this.route.snapshot.params['id'];
       this.getLivrets()
   }
+  openDeleteConfirmationDialog(c:any) {
+    const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {
+      data: { title: c.title },
+    });
 
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === true) {
+        this.deleteLivret(c.id);
+      }
+    });
+  }
   deleteLivret(id:number){
 
     this.livret.deleteLivret(id).subscribe((data:any)=>{

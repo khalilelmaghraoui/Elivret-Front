@@ -44,7 +44,8 @@ import { LivretsListComponent } from './livrets-list/livrets-list.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-
+import { DeleteConfirmationDialogComponent } from './livrets-list/delete-confirmation-dialog/delete-confirmation-dialog.component';
+import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,7 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
     SectionComponent,
     ViewLivretComponent,
     AddSectionComponent,NavbarComponent, SidebarComponent, SectionQuestionsComponent, LoginComponent,TakeSectionComponent,
-     UserLivretComponent, UserViewLivretComponent,QuestionsComponent,LivretsListComponent
+     UserLivretComponent, UserViewLivretComponent,QuestionsComponent,LivretsListComponent, DeleteConfirmationDialogComponent
 
   ],
   imports: [
@@ -63,7 +64,7 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
     MatTableModule,HttpClientModule,MatButtonModule,MatInputModule,
     FormsModule,BrowserAnimationsModule,
     MatSnackBarModule,MatToolbarModule,MatIconModule,ReactiveFormsModule,ReactiveFormsModule,
-    MatCheckboxModule,MatRadioModule,MatDialogModule,MatFormFieldModule
+    MatCheckboxModule,MatRadioModule,MatDialogModule,MatFormFieldModule,MatChipsModule
   ],
   providers: [
     {

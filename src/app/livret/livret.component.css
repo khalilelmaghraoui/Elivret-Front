@@ -22,3 +22,34 @@
   .btn-danger {
     margin: 5px;
   } 
+
+  .det{
+    display: inline;
+    margin-top: -45px;
+  }
+
+ .title{
+  color: rgb(0, 0, 0);
+  width: max-content;
+ }
+ .button-container{
+
+  display: inline-block;
+  margin-right: 10px;
+  width: max-content;
+  margin-top: 103px;
+ }
+
+ .mail li{
+ width: 300px;
+ }
+
+ .tdtd {
+  width: 300px;
+
+ }
+
+ .inpt{
+  width: 100px;
+
+ }

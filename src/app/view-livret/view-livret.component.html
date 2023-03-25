@@ -1,17 +1,12 @@
     <br>
-    <mat-card class="row text-center container">
+    <mat-card class="row text-center container" style="background-color: rgba(196, 196, 196, 0.126) ;">
+      <br>  
       <button type="button" class="col-2 btn btn-primary" routerLink="/livrets/{{livret.id}}">« Previous</button>
-      <h1>List of sections </h1>
-      <ul *ngFor="let s of sections;let indexOfelement=index;">
-          <li *ngIf="s.id && (s.visibility || canUpdateVisiblity)">
-            <a  routerLink="/livrets/{{livret.id}}/sections/{{s.id}}"><strong>{{s.title}}</strong> ( <strong>{{s.personType}}</strong> ) </a>
-          </li>
-          
-      </ul>
+      <br>
     </mat-card>
  <br>
 
-                    <mat-card *ngIf="admin" class="row text-center container">
+                    <mat-card *ngIf="admin" style="background-color:  rgba(255, 102, 0, 0.038);" class="row text-center container">
                       <h1>Add new Section</h1>
                       <div class="bootstrap-wrapper">
                           <div class="row text-center">
@@ -37,6 +32,7 @@
                                     <div class="container col-md-8">
                                         <button mat-raised-button  color="primary"> add section </button>
                                     </div>  
+                                    <br>
                                   </form>
                               </div>
                           </div>
@@ -87,3 +83,19 @@
                       </div>
 
                        -->
+<mat-card style="background-color:    rgba(255, 102, 0, 0.038) ;" class="row container">
+  <br>
+                       <h1>List of sections </h1>
+      <mat-list *ngFor="let s of sections;let indexOfelement=index;" >
+               
+        <mat-list-item *ngIf="s.id && (s.visibility || canUpdateVisiblity)">
+          <mat-icon matListItemIcon>folder</mat-icon>
+          <button  routerLink="/livrets/{{livret.id}}/sections/{{s.id}}" class="btn btn-outline-primary ctitle"><strong>{{s.title}}</strong> ( <strong>{{s.personType}}</strong> )</button>
+          <!-- <button mat-icon-button  *ngIf="admin" color="warn" aria-label="Delete" >
+            <mat-icon >delete</mat-icon>
+          </button> -->
+        </mat-list-item>
+      </mat-list>
+      </mat-card>
+
+      <br>

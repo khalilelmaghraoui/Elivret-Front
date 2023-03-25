@@ -293,7 +293,7 @@ answersCheck(){
     }
   }
 
-  console.log(this.section.personType,localStorage.getItem("role"));
+  console.log(`rol`,this.section.personType,localStorage.getItem("role"));
 
   if(localStorage.getItem("role") == this.section.personType ){
     if(this.questions.length != this.stillquestion ){

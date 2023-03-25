@@ -34,31 +34,31 @@
         <div>
         
           <br />
-          <div class="col-8">
+          <div class="">
           <mat-form-field class="w100 container" appearance="outline">
             <label>Question</label>
             <input class="form-control" id="content" type="text"placeholder="Question"  matInput formControlName="content">
           </mat-form-field>
         </div>
-      <div class="col-md-6">
-          <div formArrayName="options">
+      <div class="">
+          <div class="magin col-md-8" formArrayName="options">
             <div *ngFor="let test of arrayOptions; let i = index">
-              <div class="mx-4" [formGroupName]="i">
+              <div class="" [formGroupName]="i">
                 <label>response :  {{i+1}}</label>
                 <input class="form-control" id="option" type="text" placeholder="option"  formControlName="option">
                   </div>
                 </div>
               </div> </div>
-              <div class="col-md-4">
-            <button type="button" class="btn-block-option text-primary" mat-button color="primary" (click)="addOption()">
-              <i class="fa fa-plus" aria-hidden="true"></i>Add new response
-            </button>
-          </div>
+                <br>
+                <button mat-stroked-button color="primary" (click)="addOption()" >Add new response</button>
+
+           
+         
         
           </div>
         
           <div class="col-3 text-center mt15 container">
-            <button mat-raised-button  color="primary"> add question</button>
+            <button mat-raised-button  color="primary">Save question</button>
         </div>
         <br>
       </form>
@@ -66,7 +66,7 @@
 
     <br>
     <mat-divider></mat-divider>
-    <mat-card>
+    <mat-card style="background-color:  rgba(255, 102, 0, 0.038);">
         <div class="container">
           <div class="row">
             <div class="">
@@ -131,7 +131,7 @@
 <h2># Fill your Livret</h2>
 
 <br>
-<mat-card>
+<mat-card style="background-color:  rgba(255, 102, 0, 0.149);">
   <form>
     <div *ngFor="let question of questions; let qIndex=index">
       <label>{{ question.content }}</label>
