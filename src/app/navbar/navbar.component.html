@@ -6,7 +6,7 @@
     <span class="example-spacer"></span>
 
     <span class="profile navbar-text">
-        {{email}} ({{role}})
+        {{email}} <span *ngIf="role">({{role}})</span>
     </span>
     <button  (click)="logout()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
       <mat-icon>logout</mat-icon>

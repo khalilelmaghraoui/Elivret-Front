@@ -13,13 +13,17 @@ export class NavbarComponent {
   role: any;
 
   ngOnInit() {
-    this.email = localStorage.getItem("personEmail");
 
-    if(localStorage.getItem("role") == 'ROLE_ADMIN'){
-      this.role = "Admin"
-    }else{
-      this.role = localStorage.getItem("role")
+    if(localStorage.getItem("role")){
+      this.email = localStorage.getItem("personEmail");
+
+      if(localStorage.getItem("role") == 'ROLE_ADMIN'){
+        this.role = "Admin"
+      }else{
+        this.role = localStorage.getItem("role")
+      }
     }
+   
   }
 
   logout(){

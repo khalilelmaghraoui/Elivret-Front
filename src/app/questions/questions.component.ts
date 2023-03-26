@@ -97,7 +97,7 @@ export class QuestionsComponent implements OnInit{
 ngOnInit() {
   this.id=this.route.snapshot.params['id'];
 
- 
+ console.log("param", this.id);
       this.arrayOptions = [];
 
   this.addOption();
