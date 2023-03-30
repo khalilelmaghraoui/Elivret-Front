@@ -2,11 +2,14 @@
   <button type="button" class="col-2 btn btn-primary back" routerLink="/livrets/3/sections/{{id}}">« Previous</button>
 </mat-card>-->
 <div class="adminSection" *ngIf="admin">
-  <h2># Add questions</h2>
+  <br>
+  <h1  class="text-center">
+
+    <mat-icon>add_circle</mat-icon><b>Add questions</b></h1>
     <br>
     <mat-card>
-      <button mat-button (click)="showForm11()">simple question</button>
-      <button mat-button (click)="showForm22()">options question</button>
+      <button mat-button (click)="showForm11()"><b>Simple question</b></button>
+      <button mat-button (click)="showForm22()"><b>Options question</b></button>
     </mat-card>
 
 
@@ -78,8 +81,8 @@
               <table class="table table-bordered">
                 <thead>
                   <tr>
-                    <th scope="col">question</th>
-                    <th scope="col">question type</th>
+                    <th scope="col">Question</th>
+                    <th scope="col">Question type</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
