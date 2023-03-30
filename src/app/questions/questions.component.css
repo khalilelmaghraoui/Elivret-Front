@@ -28,6 +28,17 @@
   .example-margin {
     margin: 0 10px;
   }
+
+  .fillFormMessage{
+    color: red;
+  }
+
+  .successMessage{
+    color: green;
+  }
+
+  .mat-card{}
+    
   form {
 
     /* display: flex;
@@ -39,4 +50,8 @@
   .magin{
 
     margin-left: 12px;
+  }
+
+.back{
+    padding: 5px;
   }

@@ -1,3 +1,6 @@
+<!--<mat-card  class="row text-center container">
+  <button type="button" class="col-2 btn btn-primary back" routerLink="/livrets/3/sections/{{id}}">« Previous</button>
+</mat-card>-->
 <div class="adminSection" *ngIf="admin">
   <h2># Add questions</h2>
     <br>
@@ -131,6 +134,7 @@
 
 <div class="section" *ngIf="!admin">
 <h2># Fill your Livret</h2>
+
 <br>
 <mat-card style="background-color:  rgba(200, 200, 200, 0.079);">
   <form>
@@ -153,9 +157,12 @@
   
       <!-- Show input if question type is  'text' -->
       <div *ngIf="question.type == 'text'">
+
         <mat-form-field class="col-md-8" appearance="fill">
         <input required type="text" [disabled]="formLocked" name="response{{qIndex}}" matInput placeholder="Enter your response here" [(ngModel)]="question.answer">
         </mat-form-field>
+
+ 
       </div>
     </div>
     <br>
@@ -164,6 +171,24 @@
       <button mat-raised-button color="primary" type="submit" [disabled]="formLocked" (click)="onResponseSubmit()">Submit Responses</button>
     </div>
   </form>
+
+<br>
+
+  <div *ngIf="successMessage" class="alert alert-success " role="alert">
+    <h4 class="alert-heading">Well done!</h4>
+    <p>{{successMessage}}</p>
+  </div> 
+  <div *ngIf="alreadSentMessage" class="alert alert-success " role="alert">
+    <h4 class="alert-heading">Thank you !</h4>
+    <p>{{alreadSentMessage}}</p>
+  </div>
+  <div *ngIf="wrongRoleMessage" class="alert alert-warning" role="alert">
+    {{wrongRoleMessage}}
+  </div>
+  <div *ngIf="fillFormMessage" class="alert alert-danger" role="alert">
+    {{fillFormMessage}}
+  </div>
+
 </mat-card>
 
 

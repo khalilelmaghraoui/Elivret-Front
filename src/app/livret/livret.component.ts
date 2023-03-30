@@ -67,7 +67,6 @@ export class LivretComponent implements OnInit {
     this.LId= this.route.snapshot.params['id'];
     this.livret.getLivretById(this.elivretId).subscribe((data:any)=>{
       this.livretData=data;
-
     })
   }
   

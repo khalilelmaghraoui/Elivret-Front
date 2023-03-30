@@ -46,7 +46,6 @@ export class LoginComponent {
     if(this.loginDetails.userName && this.loginDetails.password){
         this.authService.login(this.loginDetails).subscribe((data:any)=>{
           console.log(data);
-          //this.data = data;
           localStorage.setItem("token", data.token);
           localStorage.setItem("role", data.role);
           localStorage.setItem("personId", data.id);
