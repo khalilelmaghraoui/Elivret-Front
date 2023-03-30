@@ -13,6 +13,9 @@ export class AuthInterceptor implements HttpInterceptor {
     
     const  token = localStorage.getItem("token");
 
+    console.log("mario", request.url);
+
+
     if(token){
       let clone = request.clone({
         setHeaders: {
