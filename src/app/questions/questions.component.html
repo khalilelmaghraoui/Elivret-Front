@@ -48,9 +48,11 @@
                 <input class="form-control" id="option" type="text" placeholder="option"  formControlName="option">
                   </div>
                 </div>
-              </div> </div>
+              </div>
+              <button mat-stroked-button type="button" color="primary" (click)="addOption()" >Add new response</button>
+
+            </div>
                 <br>
-                <button mat-stroked-button color="primary" (click)="addOption()" >Add new response</button>
 
            
          
@@ -130,27 +132,40 @@
 <div class="section" *ngIf="!admin">
 <h2># Fill your Livret</h2>
 <br>
-<mat-card style="background-color:  rgba(255, 102, 0, 0.149);">
+<mat-card style="background-color:  rgba(200, 200, 200, 0.079);">
   <form>
-    <div *ngFor="let question of questions; let qIndex=index">
+    <div *ngFor="let question of questions; let qIndex=index"  class="text-center">
+      <br>
+      <mat-divider></mat-divider>
+      <br>
       <label>{{ question.content }}</label>
+  <br>
   
       <!-- Show options if question type is 'multipleChoice' -->
       <div *ngIf="question.options.length > 0">
-        <label class="example-margin">options:</label>
+       
         <mat-radio-group [(ngModel)]="question.answer" (change)="onOptionSelected(qIndex, $event.value)">
           <mat-radio-button *ngFor="let option of question.options; let oIndex=index" class="example-margin" [disabled]="formLocked" [checked]="question.options[oIndex] === question.answer" [value]="oIndex">{{option}}</mat-radio-button>
         </mat-radio-group>
+        <br>
+        <br>
       </div>
   
-      <!-- Show input if question type is not 'multipleChoice' -->
+      <!-- Show input if question type is  'text' -->
       <div *ngIf="question.type == 'text'">
+        <mat-form-field class="col-md-8" appearance="fill">
         <input required type="text" [disabled]="formLocked" name="response{{qIndex}}" matInput placeholder="Enter your response here" [(ngModel)]="question.answer">
+        </mat-form-field>
       </div>
     </div>
+    <br>
+    <br>
     <div class="col-3 text-center mt15 container">
       <button mat-raised-button color="primary" type="submit" [disabled]="formLocked" (click)="onResponseSubmit()">Submit Responses</button>
     </div>
   </form>
 </mat-card>
+
+
+
 </div>
