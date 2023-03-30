@@ -20,6 +20,7 @@ const routes: Routes = [
     pathMatch:'full'
   
   },
+  { path: '', redirectTo: '/livrets', pathMatch: 'full' },
     { path: 'login/:username/:password',
     component: LoginComponent },
   {
